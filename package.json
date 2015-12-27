@@ -1,13 +1,29 @@
 {
-  "name": "mongodb-api",
+  "name": "mongodb-proxy",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "a node proxy for mongodb",
+  "author": {
+    "name": "Apostolis Konoupakis",
+    "email": "konoupakis@gmail.com",
+    "url": ""
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akonoupakis/mongodb-proxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akonoupakis/mongodb-proxy/issues",
+    "email": "konoupakis@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "main": "lib/index.js",
+  "files": [
+    "lib/**"
+  ],
   "dependencies": {
     "mongodb": "^2.1.2",
     "scrubber": "0.0.0",
