@@ -34,7 +34,12 @@ app.all('/api/:collection*', function (req, res, next) {
 
     db.handle(route, next, function (error, results) {
         if (error) {
-            res.status(500).send(error.message);
+            if (typeof (error) === typeof (Error)) {
+                res.status(500).send(error.message);
+            }
+            else {
+                res.status(400).send(error);
+            }
         }
         else {
             res.send(results);
