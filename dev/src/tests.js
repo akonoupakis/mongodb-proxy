@@ -30,7 +30,8 @@
 
     $.ajax({
         url: "/api/categories?q=" + encodeURIComponent(JSON.stringify({
-            alpha: 1
+            alpha: 1,
+            $cached: true
         })),
         context: document.body
     }).done(function (results) {
