@@ -10,14 +10,13 @@ var options = {
 
 var db = proxy.create(options);
 
-db.configure(function (x) {
-    x.register({
-        name: 'categories',
-        schema: {},
-        default: {}
+db.configure(function (config) {
+    config.register({
+        name: 'categories'//,
+        //schema: {}
     });
 
-    x.cache(new MemCache());
+    config.cache(new MemCache());
 });
 
 var app = express();
