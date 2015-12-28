@@ -9,6 +9,16 @@ var options = {
 
 var db = proxy.create(options);
 
+db.configure(function (x) {
+    x.register({
+        name: 'categories',
+        schema: {},
+        default: {}
+    });
+
+    // x.cache(memCache);
+});
+
 var app = express();
 
 app.all('/api/:collection*', function (req, res, next) {
