@@ -1,6 +1,5 @@
 var express = require('express');
 var proxy = require('../lib/index.js');
-var _ = require('underscore');
 
 var options = {
     name: 'Northwind',
@@ -12,24 +11,28 @@ var db = proxy.create(options);
 
 var app = express();
 
-app.get('/', function (req, res) {
+app.all('/api/:collection*', function (req, res, next) {
+    
+    var route = {
+        method: req.method,
+        collection: req.params.collection,
+        path: req._parsedUrl.pathname.substring('/api/'.length + req.params.collection.length),
+        query: req.query.q,
+        data: req.body
+    };
 
-    var nodeId = '56802653a5261282c30acc27';
-    var store = db.createStore('categories');
-
-    store.get(function (x) {
-        x.query({ id: nodeId });
-    }, function (err, response) {
-        if (err) {
-            res.send(err);
+    db.handle(route, next, function (error, results) {
+        if (error) {
+            res.status(500).send(error.message);
         }
         else {
-            res.send(response);
+            res.send(results);
         }
     });
+      
+});
 
-
-})
+app.use(express.static('src'));
 
 app.listen(9999);
 console.log('listening on 9999');

@@ -27,6 +27,9 @@
   "dependencies": {
     "mongodb": "^2.1.2",
     "scrubber": "0.0.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.2.2",
+	"json-validation": "^1.0.4",
+	"extend": "^3.0.0"
   }
 }
