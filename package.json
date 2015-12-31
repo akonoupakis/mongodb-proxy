@@ -2,6 +2,12 @@
   "name": "mongodb-proxy",
   "version": "1.0.2",
   "description": "a node proxy for mongodb",
+  "keywords": [
+	"mongo",
+	"mongodb"
+    "mongo proxy",
+    "mongo api"
+  ],
   "author": {
     "name": "Apostolis Konoupakis",
     "email": "konoupakis@gmail.com",
