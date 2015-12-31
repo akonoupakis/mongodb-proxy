@@ -1,6 +1,6 @@
 var express = require('express');
 var proxy = require('../lib/index.js');
-var MemCache = require('../lib/caching/MemCache.js');
+//var MemCache = require('../lib/caching/MemCache.js');
 
 var options = {
     name: 'Northwind',
@@ -45,7 +45,7 @@ db.configure(function (config) {
         }
     });
 
-    config.cache(new MemCache());
+    //config.cache(new MemCache());
 });
 
 db.bind('preread', function (sender, collection, context, data) {
