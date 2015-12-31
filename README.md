@@ -231,6 +231,97 @@ app.all('/api/:collection*', function (req, res, next) {
 app.listen(9999);
 ```
 
+The url structure for a collection would be as:
+
+GET /users => fetching all entries
+
+GET /users/56802653a5261282c30acc28 => fetching a single entry
+
+GET /users?q= + encodeStringified({firstName:'John'}) => fetching with an api query
+
+GET /users/count?q= + encodeStringified({firstName:'John'}) => fetching the count for the query
+
+POST /users => posting data (with form data)
+
+PUT /users/56802653a5261282c30acc28 => updating an entry (with form data)
+
+DEL /users/56802653a5261282c30acc28 => deleting an entry
+
+```js
+//=> posting
+$.ajax({
+    url: "/api/users",
+    type: 'POST',
+    dataType: 'json',
+    data: JSON.stringify({
+		firstName: 'John',
+		lastName: 'Smith',
+		password: 'test'
+    })
+}).error(function (err) {
+    console.log(err);
+}).done(function (results) {
+    console.log(results);
+});
+
+//=> reading
+$.ajax({
+    url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
+		id: 'xx',
+		$fields: ['firstName'],
+		$options: {
+			limit: 2
+		},
+		$single: true,
+		$cached: true
+    })),
+}).done(function (results) {
+    console.log(results);
+});
+
+//=> updating
+$.ajax({
+    url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
+		id: 'xx'
+	})),
+    type: 'PUT',
+    dataType: 'json',
+    data: JSON.stringify({
+		lastName: 'Something else'
+    })
+}).error(function (err) {
+    console.log(err);
+}).done(function (results) {
+    console.log(results);
+});
+
+//=> deleting
+$.ajax({
+    url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
+		id: 'xx'
+	})),
+    type: 'DELETE',
+    dataType: 'json'
+}).error(function (err) {
+    console.log(err);
+}).done(function (results) {
+    console.log(results);
+});
+
+//=> counting
+$.ajax({
+    url: "/api/users/count?q=" + encodeURIComponent(JSON.stringify({
+		firstName: 'John'
+	})),
+    type: 'GET',
+    dataType: 'json'
+}).error(function (err) {
+    console.log(err);
+}).done(function (results) {
+    console.log(results);
+});
+```
+
 ### Events
 
 ```js

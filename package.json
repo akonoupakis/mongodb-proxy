@@ -1,6 +1,6 @@
-{
+﻿{
   "name": "mongodb-proxy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a node proxy for mongodb",
   "author": {
     "name": "Apostolis Konoupakis",
