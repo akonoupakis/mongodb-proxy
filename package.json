@@ -4,7 +4,7 @@
   "description": "a node proxy for mongodb",
   "keywords": [
 	"mongo",
-	"mongodb"
+	"mongodb",
     "mongo proxy",
     "mongo api"
   ],
