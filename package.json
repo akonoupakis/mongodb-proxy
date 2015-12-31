@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "mongodb-proxy",
   "version": "1.0.0",
   "description": "a node proxy for mongodb",

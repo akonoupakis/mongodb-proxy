@@ -1,11 +1,10 @@
 ﻿$(document).ready(function () {
 
-    //$.ajax({
-    //    url: "/api/categories",
-    //    context: document.body
-    //}).done(function (results) {
-    //    console.log('/api/categories', results);
-    //});
+$.ajax({
+    url: "/api/users"
+}).done(function (results) {
+    console.log('/api/categories', results);
+});
 
     //$.ajax({
     //    url: "/api/categories/",
