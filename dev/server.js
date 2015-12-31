@@ -16,6 +16,34 @@ db.configure(function (config) {
         //schema: {}
     });
 
+    config.register({
+        name: 'users',
+        schema: {
+            type: 'object',
+            required: true,
+            properties: {
+                firstName: {
+                    type: 'string',
+                    required: true
+                },
+                lastName: {
+                    type: 'string',
+                    required: true
+                },
+                password: {
+                    type: 'string',
+                    required: true
+                }
+            }
+        },
+        events: {
+            get: require('./collections/users/get.js'),
+            put: require('./collections/users/put.js'),
+            post: require('./collections/users/post.js'),
+            validate: require('./collections/users/validate.js')
+        }
+    });
+
     config.cache(new MemCache());
 });
 
@@ -30,21 +58,35 @@ app.all('/api/:collection*', function (req, res, next) {
         query: req.query.q,
         data: req.body
     };
-
-    db.handle(route, next, function (error, results) {
-        if (error) {
-            if (typeof (error) === typeof (Error)) {
-                res.status(500).send(error.message);
+    
+    req.on('end', function () {
+        var jsonData = JSON.parse(postdata || '{}');
+        route.data = jsonData;
+        
+        db.handle(route, next, function (error, results) {
+            if (error) {
+                if (typeof (error) === 'object') {
+                    if (error.code && error.messages) {
+                        res.status(error.code).send(error.messages);
+                    }
+                    else {
+                        res.status(500).send(error.message);
+                    }
+                }
+                else {
+                    res.status(500).send(error);
+                }
             }
             else {
-                res.status(400).send(error);
+                res.send(results);
             }
-        }
-        else {
-            res.send(results);
-        }
+        });
     });
-      
+
+    var postdata = "";
+    req.on('data', function (postdataChunk) {
+        postdata += postdataChunk;
+    });  
 });
 
 app.use(express.static('src'));
