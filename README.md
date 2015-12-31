@@ -19,7 +19,7 @@ var options = {
     name: 'Northwind',
     host: 'localhost',
     port: 27017,
-	credentials: {'
+	credentials: {
 		user: 'user',
 		password: 'password'
 	}
