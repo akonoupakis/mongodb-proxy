@@ -40,11 +40,18 @@ db.configure(function (config) {
             get: require('./collections/users/get.js'),
             put: require('./collections/users/put.js'),
             post: require('./collections/users/post.js'),
-            validate: require('./collections/users/validate.js')
+            validate: require('./collections/users/validate.js'),
+            resolve: require('./collections/users/resolve.js')
         }
     });
 
     config.cache(new MemCache());
+});
+
+db.bind('preread', function (sender, collection, context, data) {
+    context.error(500, {
+        denied: 'read not allowed'
+    });
 });
 
 var app = express();

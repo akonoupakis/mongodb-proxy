@@ -68,33 +68,16 @@
     //});
 
 
-    //$.ajax({
-    //    url: "/api/users",
-    //    type: 'POST',
-    //    dataType: 'json',
-    //    headers: { "X-HTTP-Method-Override": "PUT" },
-    //    data: JSON.stringify({
-    //        firstName: 'user',
-    //        lastName: 'user',
-    //        password: '1'
-    //    }),
-    //    success: function (result) {
-    //        console.log("success?", result);
-    //    }
-    //}).error(function (err) {
-    //    console.log(err);
-    //}).done(function (results) {
-    //    console.log(results);
-    //});
-
     $.ajax({
-        url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
-            id: '5684858758d362402d0cd620'
-        })),
-        type: 'DELETE',
+        url: "/api/users",
+        type: 'POST',
         dataType: 'json',
         headers: { "X-HTTP-Method-Override": "PUT" },
-        
+        data: JSON.stringify({
+            firstName: 'user',
+            lastName: 'user',
+            password: '1'
+        }),
         success: function (result) {
             console.log("success?", result);
         }
@@ -103,4 +86,21 @@
     }).done(function (results) {
         console.log(results);
     });
+
+    //$.ajax({
+    //    url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
+    //        id: '5684858758d362402d0cd620'
+    //    })),
+    //    type: 'DELETE',
+    //    dataType: 'json',
+    //    headers: { "X-HTTP-Method-Override": "PUT" },
+        
+    //    success: function (result) {
+    //        console.log("success?", result);
+    //    }
+    //}).error(function (err) {
+    //    console.log(err);
+    //}).done(function (results) {
+    //    console.log(results);
+    //});
 });
