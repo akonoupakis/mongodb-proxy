@@ -49,9 +49,10 @@ db.configure(function (config) {
 });
 
 db.bind('preread', function (sender, collection, context, data) {
-    context.error(500, {
-        denied: 'read not allowed'
-    });
+    //context.error(500, {
+    //    denied: 'read not allowed'
+    //});
+    context.done();
 });
 
 var app = express();
@@ -63,7 +64,9 @@ app.all('/api/:collection*', function (req, res, next) {
         collection: req.params.collection,
         path: req._parsedUrl.pathname.substring('/api/'.length + req.params.collection.length),
         query: req.query.q,
-        data: req.body
+        data: req.body,
+        req: req,
+        res: res
     };
     
     req.on('end', function () {
