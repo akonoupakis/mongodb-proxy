@@ -193,7 +193,9 @@ app.all('/api/:collection*', function (req, res, next) {
         collection: req.params.collection,
         path: req._parsedUrl.pathname.substring('/api/'.length + req.params.collection.length),
         query: req.query.q,
-        data: req.body
+        data: req.body,
+		req: req,
+		res: res
     };
     
 	//=> get the post data

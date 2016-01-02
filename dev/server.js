@@ -45,14 +45,14 @@ db.configure(function (config) {
         }
     });
 
-    //config.cache(new MemCache());
-});
+    config.bind('preread', function (sender, collection, context, data) {
+        //context.error(500, {
+        //    denied: 'read not allowed'
+        //});
+        context.done();
+    });
 
-db.bind('preread', function (sender, collection, context, data) {
-    //context.error(500, {
-    //    denied: 'read not allowed'
-    //});
-    context.done();
+    //config.cache(new MemCache());
 });
 
 var app = express();
