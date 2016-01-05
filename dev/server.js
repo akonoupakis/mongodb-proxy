@@ -3,7 +3,7 @@ var proxy = require('../lib/index.js');
 //var MemCache = require('../lib/caching/MemCache.js');
 
 var options = {
-    name: 'Northwind',
+    name: 'jsnbt-dev',
     host: 'localhost',
     port: 27017
 };
@@ -11,38 +11,9 @@ var options = {
 var db = proxy.create(options);
 
 db.configure(function (config) {
-    config.register({
-        name: 'categories'//,
-        //schema: {}
-    });
 
     config.register({
-        name: 'users',
-        schema: {
-            type: 'object',
-            required: true,
-            properties: {
-                firstName: {
-                    type: 'string',
-                    required: true
-                },
-                lastName: {
-                    type: 'string',
-                    required: true
-                },
-                password: {
-                    type: 'string',
-                    required: true
-                }
-            }
-        },
-        events: {
-            get: require('./collections/users/get.js'),
-            put: require('./collections/users/put.js'),
-            post: require('./collections/users/post.js'),
-            validate: require('./collections/users/validate.js'),
-            resolve: require('./collections/users/resolve.js')
-        }
+        name: 'nodes'
     });
 
     config.bind('preread', function (sender, collection, context, data) {
@@ -56,6 +27,79 @@ db.configure(function (config) {
 });
 
 var app = express();
+
+app.get('/scrub', function (req, res, next) {
+    
+    var testObj = {
+        title: {
+            en: "home22"
+        },
+        domain: "core",
+        entity: "page",
+        parent: "",
+        layouts: {
+            inherits: true,
+            value: []
+        },
+        content: {
+            localized: {}
+        },
+        seo: {
+            en: "home"
+        },
+        active: {
+            en: true
+        },
+        secure: {
+            inherits: true,
+            value: false
+        },
+        meta: {
+            en: {
+                title: "home"
+            }
+        },
+        createdOn: 1448308799152,
+        modifiedOn: 1449591780217,
+        roles: {
+            inherits: false,
+            value: [
+            "public"
+            ]
+        },
+        robots: {
+            inherits: true,
+            value: []
+        },
+        hierarchy: [
+        "56857190f7c6ae3434567838"
+        ],
+        hierarchy2: [
+            "56857190f7c6ae3434567831",
+            "56857190f7c6ae3434567832",
+            "56857190f7c6ae3434567833",
+            "56857190f7c6ae3434567834"
+        ],
+        hierarchy3: [[
+            "56857190f7c6ae3434567831",
+            "56857190f7c6ae3434567832",
+            "56857190f7c6ae3434567833",
+            "56857190f7c6ae3434567834"
+        ], [
+            "56857190f7c6ae3434567831",
+            "56857190f7c6ae3434567832",
+            "56857190f7c6ae3434567833",
+            "56857190f7c6ae3434567834"
+        ]],
+        template: "home",
+        id: { $in: ["56857190f7c6ae3434567838"] }
+    };
+
+    var scrubber = require('../lib/ObjectScrubber/ObjectScrubber.js')();
+    scrubber.scrub(testObj);
+    console.log('transformed', testObj);
+    res.send(testObj);
+});
 
 app.all('/api/:collection*', function (req, res, next) {
     
