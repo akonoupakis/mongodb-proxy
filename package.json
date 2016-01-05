@@ -1,6 +1,6 @@
 ﻿{
   "name": "mongodb-proxy",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "a node proxy for mongodb",
   "keywords": [
     "mongo",
@@ -39,7 +39,7 @@
     "object-scrubber": "1.0.1",
     "underscore": "^1.8.3",
     "underscore.string": "^3.2.2",
-	"object-search": "0.0.5"
+    "object-search": "0.0.5"
   },
   "devDependencies": {
     "express": "^4.13.3"
