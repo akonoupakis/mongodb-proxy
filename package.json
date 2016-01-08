@@ -1,50 +1,47 @@
 {
-	"name": "mongodb-proxy",
-	"version": "1.0.15-pre1",
-	"description": "a node proxy for mongodb",
-	"keywords": [
-		"mongo",
-		"mongodb",
-		"mongo proxy",
-		"mongo api"
-	],
-	"author": {
-		"name": "Apostolis Konoupakis",
-		"email": "konoupakis@gmail.com",
-		"url": ""
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/akonoupakis/mongodb-proxy.git"
-	},
-	"bugs": {
-		"url": "https://github.com/akonoupakis/mongodb-proxy/issues",
-		"email": "konoupakis@gmail.com"
-	},
-	"licenses": [
-		{
-			"type": "MIT"
-		}
-	],
-	"main": "lib/index.js",
-	"files": [
-		"lib/**"
-	],
-	"dependencies": {
-		"async": "^1.5.0",
-		"debug": "^2.2.0",
-		"extend": "^3.0.0",
-		"json-validation": "^1.0.4",
-		"mongodb": "^2.1.2",
-		"object-scrubber": "1.0.1",
-		"underscore": "^1.8.3",
-		"underscore.string": "^3.2.2",
-		"object-search": "0.0.5"
-	},
-	"devDependencies": {
-		"express": "^4.13.3",
-		"commander": "^2.9.0",
-		"gitflow-publisher": "^1.0.1",
-		"gitflow-publisher-npm": "^1.0.1"
-	}
+  "name": "mongodb-proxy",
+  "version": "1.0.15-pre1",
+  "description": "a node proxy for mongodb",
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "mongo proxy",
+    "mongo api"
+  ],
+  "author": {
+    "name": "Apostolis Konoupakis",
+    "email": "konoupakis@gmail.com",
+    "url": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akonoupakis/mongodb-proxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akonoupakis/mongodb-proxy/issues",
+    "email": "konoupakis@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "main": "lib/index.js",
+  "files": [
+    "lib/**"
+  ],
+  "dependencies": {
+    "async": "^1.5.0",
+    "debug": "^2.2.0",
+    "extend": "^3.0.0",
+    "json-validation": "^1.0.4",
+    "mongodb": "^2.1.2",
+    "object-scrubber": "1.0.1",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.2.2",
+    "object-search": "0.0.5"
+  },
+  "devDependencies": {
+    "express": "^4.13.3"
+  }
 }
