@@ -1,6 +1,6 @@
 {
 	"name": "mongodb-proxy",
-	"version": "1.0.15",
+	"version": "1.0.16-pre1",
 	"description": "a node proxy for mongodb",
 	"keywords": [
 		"mongo",
