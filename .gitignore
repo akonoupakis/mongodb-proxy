@@ -167,3 +167,5 @@ $RECYCLE.BIN/
 publish.lnk
 /www
 /node_modules
+publish.js
+publish.targets.json
