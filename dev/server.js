@@ -28,77 +28,22 @@ db.configure(function (config) {
 
 var app = express();
 
-app.get('/scrub', function (req, res, next) {
+app.get('/read', function (req, res) {
     
-    var testObj = {
-        title: {
-            en: "home22"
-        },
-        domain: "core",
-        entity: "page",
-        parent: "",
-        layouts: {
-            inherits: true,
-            value: []
-        },
-        content: {
-            localized: {}
-        },
-        seo: {
-            en: "home"
-        },
-        active: {
-            en: true
-        },
-        secure: {
-            inherits: true,
-            value: false
-        },
-        meta: {
-            en: {
-                title: "home"
-            }
-        },
-        createdOn: 1448308799152,
-        modifiedOn: 1449591780217,
-        roles: {
-            inherits: false,
-            value: [
-            "public"
-            ]
-        },
-        robots: {
-            inherits: true,
-            value: []
-        },
-        hierarchy: [
-        "56857190f7c6ae3434567838"
-        ],
-        hierarchy2: [
-            "56857190f7c6ae3434567831",
-            "56857190f7c6ae3434567832",
-            "56857190f7c6ae3434567833",
-            "56857190f7c6ae3434567834"
-        ],
-        hierarchy3: [[
-            "56857190f7c6ae3434567831",
-            "56857190f7c6ae3434567832",
-            "56857190f7c6ae3434567833",
-            "56857190f7c6ae3434567834"
-        ], [
-            "56857190f7c6ae3434567831",
-            "56857190f7c6ae3434567832",
-            "56857190f7c6ae3434567833",
-            "56857190f7c6ae3434567834"
-        ]],
-        template: "home",
-        id: { $in: ["56857190f7c6ae3434567838"] }
-    };
+    var store = db.createStore('nodes');
 
-    var scrubber = require('../lib/ObjectScrubber/ObjectScrubber.js')();
-    scrubber.scrub(testObj);
-    console.log('transformed', testObj);
-    res.send(testObj);
+    var results = [];
+
+    store.read(function (x) {
+        x.query({});
+    }, function (err, result) {
+        if (err)
+            throw err;
+
+        results.push(result);
+    }, function () {
+        res.send(results);
+    });
 });
 
 app.all('/api/:collection*', function (req, res, next) {
