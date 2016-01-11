@@ -77,7 +77,7 @@ store.post(function (x) {
     console.log(err, res);
 });
 
-//=> reading
+//=> getting (using .toArray() internally)
 store.get(function (x) {
     x.query({
         id: 'xx'
@@ -122,7 +122,25 @@ store.count(function (x) {
 }, function (err, res) {
     console.log(err, res);
 });
+
+//=> reading (using a mongodb cursor)
+var results = [];
+store.read(function (x) {
+    x.query();
+    x.fields(['firstName']);
+    x.options({
+        limit: 100
+    });
+}, function (err, res) {
+	if(err)
+		throw err;
+
+	results.push(res);
+}, function() {
+	console.log('completed!', results);
+});
 ```
+
 
 ### Using the api
 The api uses internally stores to cope with results with different query structures.
