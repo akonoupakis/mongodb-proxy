@@ -169,3 +169,5 @@ publish.lnk
 /node_modules
 publish.js
 publish.targets.json
+/.vscode
+/.idea
