@@ -1,6 +1,6 @@
 {
 	"name": "mongodb-proxy",
-	"version": "1.0.28",
+	"version": "1.0.29",
 	"description": "a node proxy for mongodb",
 	"keywords": [
 		"mongo",
@@ -21,12 +21,8 @@
 		"url": "https://github.com/akonoupakis/mongodb-proxy/issues",
 		"email": "konoupakis@gmail.com"
 	},
-	"licenses": [
-		{
-			"type": "MIT"
-		}
-	],
 	"main": "lib/index.js",
+	"license": "MIT",
 	"files": [
 		"lib/**"
 	],
