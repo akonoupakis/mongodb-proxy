@@ -12,8 +12,8 @@
 
 ```
 A proxy and api pair, for mongo databases. 
-A server side proxy is created given the database's schema configuration and event functions.
-The proxy is used to handle crud database operations filtering the actions through the events 
+A server side proxy is created given the database's schema and events configuration.
+The proxy is used to handle crud database operations filtered through the given events 
 and therefore giving the option to halt on specific database actions as a firewall.
 ```
 
@@ -259,13 +259,26 @@ app.listen(3000);
 
 The url structure for a collection would be as:
 ```
-> GET /users //=> fetching all entries. 
-> GET /users/56802653a5261282c30acc28 //=> fetching a single entry
-> GET /users?q= + encodeStringified({firstName:'John'}) //=> fetching with an api query
-> GET /users/count?q= + encodeStringified({firstName:'John'}) //=> fetching the count for the query
-> POST /users //=> posting data (with form data)
-> PUT /users/56802653a5261282c30acc28 //=> updating an entry (with form data)
-> DEL /users/56802653a5261282c30acc28 //=> deleting an entry
+//=> fetching all entries.
+GET /users 
+
+//=> fetching a single entry
+GET /users/56802653a5261282c30acc28
+
+//=> fetching with an api query
+GET /users?q= + encodeStringified({firstName:'John'})
+
+//=> fetching the count for the query
+GET /users/count?q= + encodeStringified({firstName:'John'}) 
+
+//=> posting data (with form data)
+POST /users 
+
+//=> updating an entry (with form data)
+PUT /users/56802653a5261282c30acc28
+
+//=> deleting an entry
+DEL /users/56802653a5261282c30acc28 
 ```
 ```js
 // posting
