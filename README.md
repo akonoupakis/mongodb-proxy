@@ -1,20 +1,25 @@
 # mongodb-proxy
+> a node proxy for mongodb
 
-> A proxy for mongo databases.
+![VERSION](https://img.shields.io/npm/v/mongodb-proxy.svg)
+![DOWNLOADS](https://img.shields.io/npm/dt/mongodb-proxy.svg)
+[![ISSUES](https://img.shields.io/github/issues-raw/akonoupakis/mongodb-proxy.svg)](https://github.com/akonoupakis/mongodb-proxy/issues)
+![LICENCE](https://img.shields.io/npm/l/mongodb-proxy.svg)
 
-## Install
+[![NPM](https://nodei.co/npm/mongodb-proxy.png?downloads=true)](https://nodei.co/npm/mongodb-proxy/)
 
-Install with [npm](https://www.npmjs.com/)
+## overview
 
-```sh
-$ npm install mongodb-proxy --save
+```
+A proxy and api pair, for mongo databases. A server side proxy is created given the database's schema configuration and event functions.
+The proxy is used to handle crud database operations filtering the actions through the events and therefore giving the option to halt on specific database actions as a firewall.
+An api is also created that uses internally the proxy, which can be available in REST if exposed to a web api route.   
 ```
 
-### Usage
+## usage
 
 ```js
 var proxy = require('mongodb-proxy');
-
 var options = {
     name: 'Northwind',
     host: 'localhost',
@@ -61,12 +66,12 @@ db.configure(function (config) {
 });
 ```
 
-### Using the proxy
+### using the proxy
 
 ```js
 var store = db.createStore('users');
 
-//=> posting
+// posting
 store.post(function (x) {
     x.data({
         firstName: 'John',
@@ -77,7 +82,7 @@ store.post(function (x) {
     console.log(err, res);
 });
 
-//=> getting (using .toArray() internally)
+// getting (using .toArray() internally)
 store.get(function (x) {
     x.query({
         id: 'xx'
@@ -87,13 +92,13 @@ store.get(function (x) {
         limit: 2
     });
     
-    x.single(true); //=> indicate that a single object is expected
-    x.cached(); //=>  indicate that the response should be cached for later use
+    x.single(true); // indicate that a single object is expected
+    x.cached(); //  indicate that the response should be cached for later use
 }, function (err, res) {
     console.log(err, res);
 });
 
-//=> updating
+// updating
 store.put(function (x) {
     x.query({
         id: 'xx'
@@ -105,7 +110,7 @@ store.put(function (x) {
     console.log(err, res);
 });
 
-//=> deleting
+// deleting
 store.del(function (x) {
     x.query({
         id: 'xx'
@@ -114,7 +119,7 @@ store.del(function (x) {
     console.log(err, res);
 });
 
-//=> counting
+// counting
 store.count(function (x) {
     x.query({
         firstName: 'John'
@@ -123,7 +128,7 @@ store.count(function (x) {
     console.log(err, res);
 });
 
-//=> reading (using a mongodb cursor)
+// reading (using a mongodb cursor)
 var results = [];
 store.read(function (x) {
     x.query();
@@ -142,14 +147,14 @@ store.read(function (x) {
 ```
 
 
-### Using the api
+### using the api
 The api uses internally stores to cope with results with different query structures.
 For rest implementations, we would find easier to bind to the api rather than the stores themselves.
 
 ```js
 var api = db.createApi();
 
-//=> posting
+// posting
 api.users.post({
     firstName: 'John',
     lastName: 'Smith',
@@ -158,7 +163,7 @@ api.users.post({
     console.log(err, res);
 });
 
-//=> reading
+// reading
 api.users.get({
     id: 'xx',
     $fields: ['firstName'],
@@ -171,7 +176,7 @@ api.users.get({
     console.log(err, res);
 });
 
-//=> updating
+// updating
 api.users.put({
     id: 'xx'
 }, {
@@ -180,14 +185,14 @@ api.users.put({
     console.log(err, res);
 });
 
-//=> deleting
+// deleting
 api.users.del({
     id: 'xx'
 }, function (err, res) {
     console.log(err, res);
 });
 
-//=> counting
+// counting
 api.users.count({
     firstName: 'John'
 }, function (err, res) {
@@ -195,17 +200,17 @@ api.users.count({
 });
 ```
 
-### Exposing the api
+### exposing the api
 
 ```js
 var express = require('express');
 
 var app = express();
 
-//=> listen for all requests under an '/api' location
+// listen for all requests under an '/api' location
 app.all('/api/:collection*', function (req, res, next) {
 
-    //=> prepare an info object for the routing function    
+    // prepare an info object for the routing function    
     var route = {
         method: req.method,
         collection: req.params.collection,
@@ -216,12 +221,12 @@ app.all('/api/:collection*', function (req, res, next) {
         res: res
     };
     
-    //=> get the post data
+    // get the post data
     req.on('end', function () {
         var jsonData = JSON.parse(postdata || '{}');
         route.data = jsonData;
         
-        //=> pass the work on the proxy
+        // pass the work on the proxy
         db.handle(route, next, function (error, results) {
             if (error) {
                 if (typeof (error) === 'object') {
@@ -248,27 +253,23 @@ app.all('/api/:collection*', function (req, res, next) {
     });  
 });
 
-app.listen(9999);
+app.listen(3000);
 ```
 
 The url structure for a collection would be as:
 
+```
 GET /users => fetching all entries
-
 GET /users/56802653a5261282c30acc28 => fetching a single entry
-
 GET /users?q= + encodeStringified({firstName:'John'}) => fetching with an api query
-
 GET /users/count?q= + encodeStringified({firstName:'John'}) => fetching the count for the query
-
 POST /users => posting data (with form data)
-
 PUT /users/56802653a5261282c30acc28 => updating an entry (with form data)
-
 DEL /users/56802653a5261282c30acc28 => deleting an entry
+```
 
 ```js
-//=> posting
+// posting
 $.ajax({
     url: "/api/users",
     type: 'POST',
@@ -284,7 +285,7 @@ $.ajax({
     console.log(results);
 });
 
-//=> reading
+// reading
 $.ajax({
     url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
         id: 'xx',
@@ -299,7 +300,7 @@ $.ajax({
     console.log(results);
 });
 
-//=> updating
+// updating
 $.ajax({
     url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
         id: 'xx'
@@ -315,7 +316,7 @@ $.ajax({
     console.log(results);
 });
 
-//=> deleting
+// deleting
 $.ajax({
     url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
         id: 'xx'
@@ -328,7 +329,7 @@ $.ajax({
     console.log(results);
 });
 
-//=> counting
+// counting
 $.ajax({
     url: "/api/users/count?q=" + encodeURIComponent(JSON.stringify({
         firstName: 'John'
@@ -342,10 +343,10 @@ $.ajax({
 });
 ```
 
-### Events
+### events
 
 ```js
-//=> bind general events on the db instance
+// bind general events on the db instance
 db.bind('predelete', function (sender, collection, context, data) {
     if(collection === 'users') {
         context.error(401, {
@@ -356,7 +357,7 @@ db.bind('predelete', function (sender, collection, context, data) {
     }
 });
 
-//=> bind collection specific events on configuation
+// bind collection specific events on configuation
 db.configure(function (config) {
     config.register({
         name: 'users',
@@ -402,11 +403,34 @@ db.configure(function (config) {
 });
 ```
 
-
-### Cache
+### raw mongodb features
+In case you need the plain mongodb features, the store could create a collection for you
 
 ```js
-//=> the proxy uses a null cache, but you may implement one and inject it for usage
+var store = db.createStore('users');
+
+store.getCollection(function(collectionErr, collection) { 
+    collection.find({}, function (cursorErr, cursor) {
+        if (cursorErr)
+            throw cursorErr;
+
+        function processItem(err, myDoc) {
+            if (err)
+                throw err);
+
+            cursor.nextObject(processItem);
+        };
+        
+        cursor.nextObject(processItem);
+    });
+});
+```
+
+
+### cache
+
+```js
+// the proxy uses a null cache, but you may implement one and inject it for usage
 var MemCache = require('mongodb-proxy-memcache');
 
 db.configure(function (config) {
@@ -416,24 +440,24 @@ db.configure(function (config) {
 
 ## license
 
-    The MIT License (MIT)
+The MIT License (MIT)
 
-    Copyright (c) 2015 akon
+Copyright (c) 2015 akon
 
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
