@@ -1,6 +1,6 @@
 {
 	"name": "mongodb-proxy",
-	"version": "1.0.28",
+	"version": "1.0.29",
 	"description": "a node proxy for mongodb",
 	"keywords": [
 		"mongo",
@@ -22,7 +22,7 @@
 		"email": "konoupakis@gmail.com"
 	},
 	"main": "lib/index.js",
-    "license": "MIT",
+	"license": "MIT",
 	"files": [
 		"lib/**"
 	],
