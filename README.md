@@ -4,6 +4,7 @@
 ![VERSION](https://img.shields.io/npm/v/mongodb-proxy.svg)
 ![DOWNLOADS](https://img.shields.io/npm/dt/mongodb-proxy.svg)
 [![ISSUES](https://img.shields.io/github/issues-raw/akonoupakis/mongodb-proxy.svg)](https://github.com/akonoupakis/mongodb-proxy/issues)
+[![BUILD](https://api.travis-ci.org/akonoupakis/mongodb-proxy.svg?branch=master)](http://travis-ci.org/akonoupakis/mongodb-proxy)
 ![LICENCE](https://img.shields.io/npm/l/mongodb-proxy.svg)
 
 [![NPM](https://nodei.co/npm/mongodb-proxy.png?downloads=true)](https://nodei.co/npm/mongodb-proxy/)
