@@ -171,4 +171,3 @@ publish.js
 publish.targets.json
 /.vscode
 /.idea
-gitflow-publisher-jsdoc.js
