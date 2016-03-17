@@ -1,0 +1,70 @@
+<p>Cool! Here we should be able to connect and use the proxy and api features in a few steps.</p>
+
+<pre class="prettyprint">
+    
+    var dbConfig = {
+        port: 27017,
+        host: "localhost",
+        name: "db"
+    };
+    
+    var collectionName = "users";
+       
+    var dbproxy = require('mongodb-proxy');        
+    var db = dbproxy.create(dbConfig);
+            
+    db.configure(function (config) {        
+        config.register({
+            name: collectionName
+        });        
+    });
+        
+</pre>
+
+<h4>Using Store objects</h4>
+
+<pre class="prettyprint">
+    
+    var store = db.createStore('users');
+ 
+    store.get(function (x) {
+        x.query({
+            id: 'xx'
+        });
+        x.fields(['firstName']);
+        x.options({
+            limit: 2
+        });        
+        x.single(true);  
+        x.cached();  
+    }, function (err, res) {
+        if(err)
+            throw err;
+            
+        console.log(res);
+    });
+        
+</pre>
+
+<h4>Using the Api</h4>
+
+<pre class="prettyprint">
+    
+    var api = db.createApi();
+    
+    api.users.get({
+        id: 'xx',
+        $fields: ['firstName'],
+        $options: {
+            limit: 2
+        },
+        $single: true,
+        $cached: true
+    }, function (err, res) {
+        if(err)
+            throw err;
+            
+        console.log(res);
+    });
+        
+</pre>

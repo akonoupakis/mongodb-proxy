@@ -1,0 +1,32 @@
+<p>There would be cases that you may not want to use a Store or the database Api.<br />
+There would be cases that you wished to be able to use directly the mongodb driver with all the features you may get.
+</p>
+<p>Each Store created, may expose its mongodb collection object for you to use as you wish, bypassing the proxy and api events.</p>
+
+<pre class="prettyprint">
+        
+    var dbproxy = require('mongodb-proxy');
+    var db = dbproxy.create({...});        
+    
+    var store = db.createStore('users');
+     
+    store.getCollection(function(collectionErr, collection) {
+        if(collectionErr)
+            throw collectionErr;
+             
+        collection.find({}, function (cursorErr, cursor) {
+            if (cursorErr)
+                throw cursorErr;
+    
+            function processItem(err, myDoc) {
+                if (err)
+                    throw err);
+    
+                cursor.nextObject(processItem);
+            };
+            
+            cursor.nextObject(processItem);
+        });
+    });
+        
+</pre>

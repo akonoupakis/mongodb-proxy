@@ -1,0 +1,15 @@
+<p>The mongodb-proxy has a dummy cache implementation in place, but you may load another on during configuration</p>
+
+<pre class="prettyprint">
+    
+    var dbproxy = require('mongodb-proxy');
+    var db = dbproxy.create({...});
+    
+    // a memory based cache implementation (see <a target="_blank" href="https://www.npmjs.com/package/mongodb-proxy-memcache">here</a>).
+    var MemCache = require('mongodb-proxy-memcache');
+            
+    db.configure(function (config) {    
+        config.cache(new MemCache());        
+    });
+    
+</pre>

@@ -11,14 +11,22 @@
 
 ## overview
 
-```
-A proxy and api pair, for mongo databases. 
-A server side proxy is created given the database's schema and events configuration.
-The proxy is used to handle crud database operations filtered through the given events 
-and therefore giving the option to halt on specific database actions as a firewall.
-```
+A proxy and api pair, for mongo databases.<br />
+A server side proxy is created given the database's schema and events configuration.<br />
+The proxy is used to handle crud database operations filtered through the given events and therefore giving the option to halt on specific database actions as a firewall.
 
 ## usage
+
+A few tutorials for you:
+
+* [Getting started](https://github.com/akonoupakis/mongodb-proxy/blob/develop/docs/jsdoc/tutorial-getting-started.html)
+* [Register a collection](tutorial-register-collection.html)
+* [Bind global events](tutorial-bind-global-events.html)
+* [Set cache provider](tutorial-set-cache.html)
+* [Using the mongodb driver](tutorial-using-mongodb-driver.html)
+* [Expose the api](tutorial-expose-the-api.html)
+
+@tutorial expose-the-api
 
 ```js
 var proxy = require('mongodb-proxy');

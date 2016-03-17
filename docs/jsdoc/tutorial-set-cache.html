@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Tutorial: Register a collection - Documentation</title>
+    <title>Tutorial: Set cache provider - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Tutorial: Register a collection</h1>
+    <h1 class="page-title">Tutorial: Set cache provider</h1>
     
 
     <section>
@@ -36,156 +36,23 @@
 <header>
     
 
-    <h2>Register a collection</h2>
+    <h2>Set cache provider</h2>
 </header>
 
 <article>
-    <p>On application start, the proxy must be configured to be aware of the involved collections and their events.<br />
-Assuming we have a collection of users, we should have the following:</p>
+    <p>The mongodb-proxy has a dummy cache implementation in place, but you may load another on during configuration</p>
 
 <pre class="prettyprint">
     
-    var dbConfig = {
-        port: 27017,
-        host: "localhost",
-        name: "db"
-    };
+    var dbproxy = require('mongodb-proxy');
+    var db = dbproxy.create({...});
     
-    var collectionName = "users";
-    
-    var collectionSchema = {
-        type: "object",
-        required: true,
-        properties: {
-            firstName: {
-                type: "string",
-                required: true
-            },
-            lastName: {
-                type: "string",
-                required: true
-            },
-            password: {
-                type: "string",
-                required: true
-            }
-        }        
-    };
-    
-</pre>
-
-<pre class="prettyprint">
-    
-    var dbproxy = require('mongodb-proxy');        
-    var db = dbproxy.create(dbConfig);        
-    db.configure(function (config) {        
-        config.register({
-            name: collectionName,
-            schema: collectionSchema,
-            events: {
-                get: require('./events/get.js'),
-                post: require('./events/post.js'),
-                put: require('./events/put.js'),
-                validate: require('./events/validate.js'),
-                delete: require('./events/delete.js')
-            }
-        });        
+    // a memory based cache implementation (see <a target="_blank" href="https://www.npmjs.com/package/mongodb-proxy-memcache">here</a>).
+    var MemCache = require('mongodb-proxy-memcache');
+            
+    db.configure(function (config) {    
+        config.cache(new MemCache());        
     });
-    
-</pre>
-
-<h4>./events/get.js</h4>
-<p>Get events are triggered against the resolved data to provide opportunities to halt the retrieve process.</p>
-<pre class="prettyprint">
-    
-    module.exports = function (sender, context, data) {        
-        // if the request is not coming from an internal proxy
-        if (!context.internal)
-            // check that the user has permissions on the current store and the current item 
-            if(!isUserAuthorised(currentUser, context.store.name, data.id, 'get'))
-                // return Unauthorized 
-                return context.error(401, 'Access denied');
-        
-        // hide the password property from the resulted object
-        context.hide('password');
-        
-        // trigger the async callback
-        context.done();
-    };
-    
-</pre>
-
-<h4>./events/post.js</h4>
-<p>Post events are triggered before validation as a last step for the data to be modified or the post process to be halted.</p>
-<pre class="prettyprint">
-    
-    module.exports = function (sender, context, data) {
-        // if the request is not coming from an internal proxy
-        if (!context.internal)
-            // check that the user has permissions on the current store and the current item's parent 
-            if(!isUserAuthorised(currentUser, context.store.name, data.parentId, 'post'))
-                // return Unauthorized 
-                return context.error(401, 'Access denied');
-        
-        // set defaults
-        data.createdOn = new Date().getTime();
-        
-        // trigger the async callback
-        context.done();
-    };
-    
-</pre>
-
-<h4>./events/put.js</h4>
-<p>Similarly, put events are also triggered before validation as a last step for the data to be modified or the put process to be halted.</p>
-<pre class="prettyprint">
-    
-    module.exports = function (sender, context, data) {
-        // if the request is not coming from an internal proxy
-        if (!context.internal)
-            // check that the user has permissions on the current store and the current item's parent 
-            if(!isUserAuthorised(currentUser, context.store.name, data.id, 'put'))
-                // return Unauthorized 
-                return context.error(401, 'Access denied');
-        
-        // prevent from changing a field
-        if(context.changed('password'))
-            return context.error(400, 'Cannot change field');
-        
-        // set defaults
-        data.modifiedOn = new Date().getTime();
-        
-        // trigger the async callback
-        context.done();
-    };
-    
-</pre>
-
-<h4>./events/validate.js</h4>
-<p>
-    Validate events are triggered after local post and put actions and before actual post and put actions mostly for schema validation.<br />
-    The schema registered with the collection, is already validated on a step before this one, so here we should check for extra more specific validations.
-</p>
-<pre class="prettyprint">
-    
-    module.exports = function (sender, context, data) {
-        // check password length        
-        if(data.password.length < 5)
-            return context.error(400, 'Password should be at least 5 characters');
-        
-        // trigger the async callback
-        context.done();
-    };
-    
-</pre>
-
-<h4>./events/delete.js</h4>
-<p>Delete events are similarly triggered before delete actions.</p>
-<pre class="prettyprint">
-    
-    module.exports = function (sender, context, data) {
-        return context.error(401, 'Access denied');        
-    };
     
 </pre>
 </article>

@@ -1,0 +1,159 @@
+<p>Besides the local collection events, mongodb supports also global collection events that run for all collection on pre and post levels</p>
+
+<pre class="prettyprint">
+    
+    var dbproxy = require("mongodb-proxy");
+    var db = dbproxy.create({...});                
+    db.configure(function (config) {        
+        config.bind("preread", require("./events/preread.js"));
+        config.bind("postread", require("./events/postread.js"));
+        config.bind("precreate", require("./events/precreate.js"));
+        config.bind("postcreate", require("./events/postcreate.js"));
+        config.bind("preupdate", require("./events/preupdate.js"));
+        config.bind("postupdate", require("./events/postupdate.js"));
+        config.bind("predelete", require("./events/predelete.js"));
+        config.bind("postdelete", require("./events/postdelete.js"));        
+    });
+    
+</pre>
+
+<h4>./events/preread.js</h4>
+<p>PreRead events are triggered before fetching from the database and before any local "get" events.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (sender, collection, context) {        
+        // if the request is not coming from an internal proxy
+        if (!context.internal)
+            // check that the user has permissions on the current store and the current item 
+            if(!isUserAuthorised(currentUser, collection, "get"))
+                // return Unauthorized 
+                return context.error(401, "Access denied");
+        
+        // trigger the async callback
+        context.done();        
+    };
+    
+</pre>
+
+<h4>./events/postread.js</h4>
+<p>PostRead events are triggered after the results are retrieved from the database and after any local "get" events.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (sender, collection, context, data) {        
+        // the request is not coming from an internal proxy
+        if (!context.internal)
+            // in case the data is restricted 
+            if(isRestricted(collection, data))
+                // return Unauthorized 
+                return context.error(401, "Access denied");
+        
+        // trigger the async callback
+        context.done();        
+    };
+    
+</pre>
+
+<h4>./events/precreate.js</h4>
+<p>PreCreate events are triggered before posting data to the database and before any local "post" events.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (sender, collection, context, data) {        
+        // if the request is not coming from an internal proxy
+        if (!context.internal)
+            // check that the user has permissions on the current store and the current item 
+            if(!isUserAuthorised(currentUser, collection, "post"))
+                // return Unauthorized 
+                return context.error(401, "Access denied");
+        
+        // trigger the async callback
+        context.done();        
+    };
+    
+</pre>
+
+<h4>./events/postcreate.js</h4>
+<p>PostCreate events are triggered after the results are posted to the database and after any local "post" events.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (sender, collection, context, data) {    
+        // record the post action
+        logAction(sender, collection, "post", data, function (err, res) {
+            if (err) 
+                return context.error(err);
+            
+            // trigger the async callback
+            context.done();
+        });        
+    };
+    
+</pre>
+
+<h4>./events/preupdate.js</h4>
+<p>PreUpdate events are triggered before updating data to the database and before any local "put" events.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (sender, collection, context, data) {        
+        // if the request is not coming from an internal proxy
+        if (!context.internal)
+            // check that the user has permissions on the current store and the current item 
+            if(!isUserAuthorised(currentUser, collection, "put"))
+                // return Unauthorized 
+                return context.error(401, "Access denied");
+        
+        // trigger the async callback
+        context.done();        
+    };
+    
+</pre>
+
+<h4>./events/postupdate.js</h4>
+<p>PostUpdate events are triggered after the results are updated in the database and after any local "put" events.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (sender, collection, context, data) {    
+        // record the post action
+        logAction(sender, collection, "put", data, function (err, res) {
+            if (err) 
+                return context.error(err);
+            
+            // trigger the async callback
+            context.done();
+        });        
+    };
+    
+</pre>
+
+<h4>./events/predelete.js</h4>
+<p>PreDelete events are triggered before removing data from the database and before any local "del" events.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (sender, collection, context, data) {        
+        // if the request is not coming from an internal proxy
+        if (!context.internal)
+            // check that the user has permissions on the current store and the current item 
+            if(!isUserAuthorised(currentUser, collection, "del"))
+                // return Unauthorized 
+                return context.error(401, "Access denied");
+        
+        // trigger the async callback
+        context.done();        
+    };
+    
+</pre>
+
+<h4>./events/postdelete.js</h4>
+<p>PostDelete events are triggered after the results are removed from the database and after any local "put" events.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (sender, collection, context, data) {    
+        // record the post action
+        logAction(sender, collection, "del", data, function (err, res) {
+            if (err) 
+                return context.error(err);
+            
+            // trigger the async callback
+            context.done();
+        });        
+    };
+    
+</pre>
