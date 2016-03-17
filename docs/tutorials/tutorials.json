@@ -1,0 +1,20 @@
+{
+    "getting-started": {
+        "title": "Getting started"
+    },
+    "register-collection": {
+        "title": "Register a collection"
+    },
+    "bind-global-events": {
+        "title": "Bind global events"
+    },
+    "set-cache": {
+        "title": "Set cache provider"
+    },
+    "using-mongodb-driver": {
+        "title": "Using the mongodb driver"
+    },
+    "expose-the-api": {
+        "title": "Expose the api"
+    }
+}

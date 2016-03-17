@@ -1,0 +1,153 @@
+<p>A nice use of this proxy, is that it has an easy to use and easy to be serialized api syntax.<br />
+This api can be exposed to REST services in a few steps.
+</p>
+<p>The database instance, provides a handle method that received a request and resolved its requested data. The api syntax is as follows:</p>
+<div class="list-group">
+    <p class="list-group-item-text"><b>fetching all entries</b><br />GET /users</p>
+    <p class="list-group-item-text"><b>fetching a single entry</b><br />GET /users/56802653a5261282c30acc28</p>
+    <p class="list-group-item-text"><b>fetching with a query</b><br />GET /users?q= + encodeStringified({firstName:'John'})</p>    
+    <p class="list-group-item-text"><b>fetching the count for the query</b><br />GET /users/count?q= + encodeStringified({firstName:'John'}) </p>
+    <p class="list-group-item-text"><b>posting data (with form data)</b><br />POST /users</p>
+    <p class="list-group-item-text"><b>updating an entry (with form data)</b><br />PUT /users/56802653a5261282c30acc28</p>
+    <p class="list-group-item-text"><b>deleting an entry</b><br />DEL /users/56802653a5261282c30acc28 </p>
+</div>
+<br />
+<p>Here, as an example, we will achive this with the expressJs routing system</p>
+
+<pre class="prettyprint">
+        
+    var express = require('express');
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');        
+         
+    var app = express();
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>({...});
+        
+    // listen for all requests under an '/api' location 
+    app.all('/api/:collection*', function (req, res, next) {    
+        // prepare an info object for the routing function     
+        var route = {
+            method: req.method,
+            collection: req.params.collection,
+            path: req._parsedUrl.pathname.substring('/api/'.length + req.params.collection.length),
+            query: req.query.q,
+            data: req.body,
+            req: req,
+            res: res
+        };
+        
+        // get the post data 
+        var postdata = "";        
+        req.on('data', function (postdataChunk) {
+            postdata += postdataChunk;
+        });  
+        
+        req.on('end', function () {
+            var jsonData = JSON.parse(postdata || '{}');
+            route.data = jsonData;
+            
+            // pass the work on the proxy 
+            db.<a href="Database.html#handle">handle</a>(route, next, function (error, results) {
+                if (error) {
+                    if (typeof (error) === 'object') {
+                        if (error.code && error.messages) {
+                            res.status(error.code).send(error.messages);
+                        }
+                        else {
+                            res.status(500).send(error.message);
+                        }
+                    }
+                    else {
+                        res.status(500).send(error);
+                    }
+                }
+                else {
+                    res.send(results);
+                }
+            });
+        });
+    });
+    
+    app.listen(3000);
+        
+</pre>
+
+<h4>Consuming the api with jQuery</h4>
+<pre class="prettyprint">
+    
+    // posting 
+    $.ajax({
+        url: "/api/users",
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify({
+            firstName: 'John',
+            lastName: 'Smith',
+            password: 'test'
+        })
+    }).error(function (err) {
+        throw err;
+    }).done(function (results) {
+        console.log(results);
+    });
+    
+    // reading 
+    $.ajax({
+        url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
+            id: 'xx',
+            $fields: ['firstName'],
+            $options: {
+                limit: 2
+            },
+            $single: true,
+            $cached: true
+        })),
+    }).error(function (err) {
+        throw err;
+    }).done(function (results) {
+        console.log(results);
+    });
+    
+    // updating 
+    $.ajax({
+        url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
+            id: 'xx'
+        })),
+        type: 'PUT',
+        dataType: 'json',
+        data: JSON.stringify({
+            lastName: 'Something else'
+        })
+    }).error(function (err) {
+        throw err;
+    }).done(function (results) {
+        console.log(results);
+    });
+    
+    // deleting 
+    $.ajax({
+        url: "/api/users?q=" + encodeURIComponent(JSON.stringify({
+            id: 'xx'
+        })),
+        type: 'DELETE',
+        dataType: 'json'
+    }).error(function (err) {
+        throw err;
+    }).done(function (results) {
+        console.log(results);
+    });
+    
+    // counting 
+    $.ajax({
+        url: "/api/users/count?q=" + encodeURIComponent(JSON.stringify({
+            firstName: 'John'
+        })),
+        type: 'GET',
+        dataType: 'json'
+    }).error(function (err) {
+        throw err;
+    }).done(function (results) {
+        console.log(results);
+    });
+    
+</pre>
+

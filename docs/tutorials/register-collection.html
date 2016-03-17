@@ -1,0 +1,148 @@
+<p>On application start, the proxy must be configured to be aware of the involved collections and their events.<br />
+Assuming we have a collection of users, we should have the following:</p>
+
+<pre class="prettyprint">
+    
+    var dbConfig = {
+        port: 27017,
+        host: "localhost",
+        name: "db"
+    };
+    
+    var collectionName = "users";
+    
+    var collectionSchema = {
+        type: "object",
+        required: true,
+        properties: {
+            firstName: {
+                type: "string",
+                required: true
+            },
+            lastName: {
+                type: "string",
+                required: true
+            },
+            password: {
+                type: "string",
+                required: true
+            }
+        }        
+    };
+    
+</pre>
+
+<pre class="prettyprint">
+    
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>(dbConfig);        
+    db.<a href="Database.html#configure">configure</a>(function (<a href="DatabaseConfigProcessor.html">config</a>) {    
+        config.<a href="DatabaseConfigProcessor.html#register">register</a>({
+            name: collectionName,
+            schema: collectionSchema,
+            events: {
+                get: require('./events/get.js'),
+                post: require('./events/post.js'),
+                put: require('./events/put.js'),
+                validate: require('./events/validate.js'),
+                delete: require('./events/delete.js')
+            }
+        });        
+    });
+    
+</pre>
+
+<h4>./events/get.js</h4>
+<p>Get events are triggered against the resolved data to provide opportunities to halt the retrieve process.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {        
+        // if the request is not coming from an internal proxy
+        if (!context.internal)
+            // check that the user has permissions on the current store and the current item 
+            if(!isUserAuthorised(currentUser, context.store.name, data.id, 'get'))
+                // return Unauthorized 
+                return context.error(401, 'Access denied');
+        
+        // hide the password property from the resulted object
+        context.hide('password');
+        
+        // trigger the async callback
+        context.done();
+    };
+    
+</pre>
+
+<h4>./events/post.js</h4>
+<p>Post events are triggered before validation as a last step for the data to be modified or the post process to be halted.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
+        // if the request is not coming from an internal proxy
+        if (!context.internal)
+            // check that the user has permissions on the current store and the current item's parent 
+            if(!isUserAuthorised(currentUser, context.store.name, data.parentId, 'post'))
+                // return Unauthorized 
+                return context.error(401, 'Access denied');
+        
+        // set defaults
+        data.createdOn = new Date().getTime();
+        
+        // trigger the async callback
+        context.done();
+    };
+    
+</pre>
+
+<h4>./events/put.js</h4>
+<p>Similarly, put events are also triggered before validation as a last step for the data to be modified or the put process to be halted.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
+        // if the request is not coming from an internal proxy
+        if (!context.internal)
+            // check that the user has permissions on the current store and the current item's parent 
+            if(!isUserAuthorised(currentUser, context.store.name, data.id, 'put'))
+                // return Unauthorized 
+                return context.error(401, 'Access denied');
+        
+        // prevent from changing a field
+        if(context.changed('password'))
+            return context.error(400, 'Cannot change field');
+        
+        // set defaults
+        data.modifiedOn = new Date().getTime();
+        
+        // trigger the async callback
+        context.done();
+    };
+    
+</pre>
+
+<h4>./events/validate.js</h4>
+<p>
+    Validate events are triggered after local post and put actions and before actual post and put actions mostly for schema validation.<br />
+    The schema registered with the collection, is already validated on a step before this one, so here we should check for extra more specific validations.
+</p>
+<pre class="prettyprint">
+    
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
+        // check password length        
+        if(data.password.length < 5)
+            return context.error(400, 'Password should be at least 5 characters');
+        
+        // trigger the async callback
+        context.done();
+    };
+    
+</pre>
+
+<h4>./events/delete.js</h4>
+<p>Delete events are similarly triggered before delete actions.</p>
+<pre class="prettyprint">
+    
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
+        return context.error(401, 'Access denied');        
+    };
+    
+</pre>
