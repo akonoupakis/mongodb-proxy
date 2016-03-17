@@ -1,16 +1,16 @@
-<p>There would be cases that you may not want to use a Store or the database Api.<br />
+<p>There would be cases that you may not want to use a <a href="Store.html">Store</a> or the database <a href="Api.html">Api</a>.<br />
 There would be cases that you wished to be able to use directly the mongodb driver with all the features you may get.
 </p>
-<p>Each Store created, may expose its mongodb collection object for you to use as you wish, bypassing the proxy and api events.</p>
+<p>Each <a href="Store.html">Store</a> created, may expose its mongodb collection object for you to use as you wish, bypassing the proxy and api events.</p>
 
 <pre class="prettyprint">
         
-    var dbproxy = require('mongodb-proxy');
-    var db = dbproxy.create({...});        
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>({...});
     
-    var store = db.createStore('users');
+    var <a href="Store.html">store</a> = db.<a href="Database.html#createStore">createStore</a>('users');
      
-    store.getCollection(function(collectionErr, collection) {
+    store.<a href="Store.html#getCollection">getCollection</a>(function(collectionErr, collection) {
         if(collectionErr)
             throw collectionErr;
              

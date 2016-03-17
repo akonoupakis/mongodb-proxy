@@ -10,24 +10,25 @@
     
     var collectionName = "users";
        
-    var dbproxy = require('mongodb-proxy');        
-    var db = dbproxy.create(dbConfig);
-            
-    db.configure(function (config) {        
-        config.register({
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>(dbConfig);
+    
+    db.<a href="Database.html#configure">configure</a>(function (<a href="DatabaseConfigProcessor.html">config</a>) {
+        // register a collection "users". (check out the tutorial <i><a href="tutorial-register-collection.html">Register a collection</a></i> for more)        
+        config.<a href="DatabaseConfigProcessor.html#register">register</a>({
             name: collectionName
         });        
     });
         
 </pre>
 
-<h4>Using Store objects</h4>
+<h4>Using <a href="Store.html">Stores</a></h4>
 
 <pre class="prettyprint">
     
-    var store = db.createStore('users');
+    var store = db.<a href="Database.html#createStore">createStore</a>('users');
  
-    store.get(function (x) {
+    store.<a href="Store.html#get">get</a>(function (x) {
         x.query({
             id: 'xx'
         });
@@ -46,13 +47,13 @@
         
 </pre>
 
-<h4>Using the Api</h4>
+<h4>Using the <a href="Api.html">Api</a></h4>
 
 <pre class="prettyprint">
     
-    var api = db.createApi();
+    var api = db.<a href="Database.html#createApi">createApi</a>();
     
-    api.users.get({
+    api.<a href="CollectionApi.html">users</a>.<a href="CollectionApi.html#get">get</a>({
         id: 'xx',
         $fields: ['firstName'],
         $options: {

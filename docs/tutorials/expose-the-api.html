@@ -17,10 +17,10 @@ This api can be exposed to REST services in a few steps.
 <pre class="prettyprint">
         
     var express = require('express');
-    var dbproxy = require('mongodb-proxy');        
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');        
          
     var app = express();
-    var db = dbproxy.create({...});
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>({...});
         
     // listen for all requests under an '/api' location 
     app.all('/api/:collection*', function (req, res, next) {    
@@ -46,7 +46,7 @@ This api can be exposed to REST services in a few steps.
             route.data = jsonData;
             
             // pass the work on the proxy 
-            db.handle(route, next, function (error, results) {
+            db.<a href="Database.html#handle">handle</a>(route, next, function (error, results) {
                 if (error) {
                     if (typeof (error) === 'object') {
                         if (error.code && error.messages) {

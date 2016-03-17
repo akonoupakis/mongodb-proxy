@@ -34,10 +34,10 @@ Assuming we have a collection of users, we should have the following:</p>
 
 <pre class="prettyprint">
     
-    var dbproxy = require('mongodb-proxy');        
-    var db = dbproxy.create(dbConfig);        
-    db.configure(function (config) {        
-        config.register({
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>(dbConfig);        
+    db.<a href="Database.html#configure">configure</a>(function (<a href="DatabaseConfigProcessor.html">config</a>) {    
+        config.<a href="DatabaseConfigProcessor.html#register">register</a>({
             name: collectionName,
             schema: collectionSchema,
             events: {
@@ -56,7 +56,7 @@ Assuming we have a collection of users, we should have the following:</p>
 <p>Get events are triggered against the resolved data to provide opportunities to halt the retrieve process.</p>
 <pre class="prettyprint">
     
-    module.exports = function (sender, context, data) {        
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {        
         // if the request is not coming from an internal proxy
         if (!context.internal)
             // check that the user has permissions on the current store and the current item 
@@ -77,7 +77,7 @@ Assuming we have a collection of users, we should have the following:</p>
 <p>Post events are triggered before validation as a last step for the data to be modified or the post process to be halted.</p>
 <pre class="prettyprint">
     
-    module.exports = function (sender, context, data) {
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
         // if the request is not coming from an internal proxy
         if (!context.internal)
             // check that the user has permissions on the current store and the current item's parent 
@@ -98,7 +98,7 @@ Assuming we have a collection of users, we should have the following:</p>
 <p>Similarly, put events are also triggered before validation as a last step for the data to be modified or the put process to be halted.</p>
 <pre class="prettyprint">
     
-    module.exports = function (sender, context, data) {
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
         // if the request is not coming from an internal proxy
         if (!context.internal)
             // check that the user has permissions on the current store and the current item's parent 
@@ -126,7 +126,7 @@ Assuming we have a collection of users, we should have the following:</p>
 </p>
 <pre class="prettyprint">
     
-    module.exports = function (sender, context, data) {
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
         // check password length        
         if(data.password.length < 5)
             return context.error(400, 'Password should be at least 5 characters');
@@ -141,7 +141,7 @@ Assuming we have a collection of users, we should have the following:</p>
 <p>Delete events are similarly triggered before delete actions.</p>
 <pre class="prettyprint">
     
-    module.exports = function (sender, context, data) {
+    module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
         return context.error(401, 'Access denied');        
     };
     
