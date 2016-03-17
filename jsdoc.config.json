@@ -1,0 +1,30 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },    
+    "source": {
+        "include": [
+            "lib/Api.js", 
+            "lib/Cache.js",
+            "lib/Context.js",
+            "lib/Database.js",
+            "lib/Exception.js",
+            "lib/Store.js",
+            "lib/index.js"
+        ]
+    },
+    "opts": {
+        "template": "node_modules/minami",
+        "encoding": "utf8",
+        "destination": "./jsdoc/",
+        "recurse": true
+    },
+    "templates": {
+        "default": {
+            "outputSourceFiles": false
+        },
+        "cleverLinks": false,
+        "monospaceLinks": false
+    }
+}

@@ -91,7 +91,7 @@ store.get(function (x) {
     });
     x.fields(['firstName']);
     x.options({
-        limit: 2
+        limit: 100
     });
     
     x.single(true); // indicate that a single object is expected
