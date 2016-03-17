@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Context - Documentation</title>
+    <title>CollectionApi - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Context</h1>
+    <h1 class="page-title">CollectionApi</h1>
     
 
     
@@ -41,7 +41,9 @@
 <header>
     
         <h2>
-        Context
+            <span class="ancestors"><a href="module-mongodb-proxy_Api.html">mongodb-proxy/Api</a>~</span>
+        
+        CollectionApi
         </h2>
         
     
@@ -54,14 +56,14 @@
 
     
 
-    <h4 class="name" id="Context"><span class="type-signature"></span>new Context<span class="signature">(store, data, previous, raw, cb)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CollectionApi"><span class="type-signature"></span>new CollectionApi<span class="signature">(database, name, req, res, internal)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    The data context passing within local and global events.
+    An api wrapper for a single collection using internally a <a href="Store.html">Store</a>.
 </div>
 
 
@@ -97,13 +99,13 @@
 
         <tr>
             
-                <td class="name"><code>store</code></td>
+                <td class="name"><code>database</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Store.html">Store</a></span>
+<span class="param-type"><a href="Database.html">Database</a></span>
 
 
             
@@ -113,20 +115,20 @@
 
             
 
-            <td class="description last">The store</td>
+            <td class="description last">The database instance</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">string</span>
 
 
             
@@ -136,153 +138,7 @@
 
             
 
-            <td class="description last">The data</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>previous</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The previous data</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>raw</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The raw data entered</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cb</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Context.html#~callback">Context~callback</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The callback function</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>internal</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Whether the underlying Store is in internal mode or not</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>store</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Store.html">Store</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The store</td>
+            <td class="description last">The collection name.</td>
         </tr>
 
     
@@ -335,13 +191,13 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>internal</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">boolean</span>
 
 
             
@@ -351,20 +207,74 @@
 
             
 
-            <td class="description last">The data</td>
+            <td class="description last">Whether the collection Api is in internal mode or not</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>database</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Database.html">Database</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The database instance</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>previous</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">string</span>
 
 
             
@@ -374,14 +284,14 @@
 
             
 
-            <td class="description last">The previous data</td>
+            <td class="description last">The collection name.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>raw</code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
@@ -397,7 +307,53 @@
 
             
 
-            <td class="description last">The raw data entered</td>
+            <td class="description last">The http request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The http response object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>internal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Whether the collection Api is in internal mode or not</td>
         </tr>
 
     
@@ -435,15 +391,6 @@
 
     
 
-    
-    <dt class="tag-tutorial">Tutorials:</dt>
-    <dd class="tag-tutorial">
-        <ul>
-            <li><a href="tutorial-register-collection.html">Register a collection</a></li>
-        
-            <li><a href="tutorial-bind-global-events.html">Bind global events</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -489,14 +436,14 @@
 
     
 
-    <h4 class="name" id="changed"><span class="type-signature"></span>changed<span class="signature">(name)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="count"><span class="type-signature"></span>count<span class="signature">(query, cb)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Check if a property value has changed.
+    Counts data from the collection.
 </div>
 
 
@@ -532,239 +479,12 @@
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>query</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The property name</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="done"><span class="type-signature"></span>done<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Complete the process.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="error"><span class="type-signature"></span>error<span class="signature">(code, err)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Throw an error and halt the process.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>code</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-|
-
 <span class="param-type">object</span>
 
 
@@ -775,23 +495,20 @@
 
             
 
-            <td class="description last">The error status code or the error object</td>
+            <td class="description last">The query</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>err</code></td>
+                <td class="name"><code>cb</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
-|
-
-<span class="param-type">object</span>
+<span class="param-type"><a href="CollectionApi.html#~countCallback">CollectionApi~countCallback</a></span>
 
 
             
@@ -801,7 +518,7 @@
 
             
 
-            <td class="description last">The error object or message</td>
+            <td class="description last">The callback function</td>
         </tr>
 
     
@@ -862,20 +579,25 @@
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>api.collection.count({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+
+
 
         
             
 
     
 
-    <h4 class="name" id="hide"><span class="type-signature"></span>hide<span class="signature">(name)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="del"><span class="type-signature"></span>del<span class="signature">(query, cb)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Hide a property from the resulting data.
+    Delete data from the collection.
 </div>
 
 
@@ -911,13 +633,13 @@
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>query</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
             
@@ -927,7 +649,30 @@
 
             
 
-            <td class="description last">The property name</td>
+            <td class="description last">The query</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Store.html#~delCallback">Store~delCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback function</td>
         </tr>
 
     
@@ -988,20 +733,25 @@
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>api.collection.del({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+
+
 
         
             
 
     
 
-    <h4 class="name" id="validate"><span class="type-signature"></span>validate<span class="signature">(schema)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(query, cb)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Validate the data against a json schema.
+    Get data from the collection.
 </div>
 
 
@@ -1037,7 +787,7 @@
 
         <tr>
             
-                <td class="name"><code>schema</code></td>
+                <td class="name"><code>query</code></td>
             
 
             <td class="type">
@@ -1053,7 +803,30 @@
 
             
 
-            <td class="description last">The validation schema</td>
+            <td class="description last">The query</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="CollectionApi.html#~getCallback">CollectionApi~getCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback function</td>
         </tr>
 
     
@@ -1112,43 +885,28 @@
 
 
 
-<h5>Returns:</h5>
-
-        
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
+    <h5>Example</h5>
     
+    <pre class="prettyprint"><code>api.collection.get({  firstName: 'John'  $single: true,  $cached: true,  $fields: {    firstName: 1,    lastName: 1  },  $limit: 100,  $sort: {    firstName: 1  }}, function (err, res) {  if(err)      throw err;  });</code></pre>
 
 
 
         
-    
-
-    
-        <h3 class="subsection-title">Type Definitions</h3>
-
-        
-                
+            
 
     
 
-    <h4 class="name" id="~callback"><span class="type-signature"></span>callback<span class="signature">(err, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="post"><span class="type-signature"></span>post<span class="signature">(data, cb)</span><span class="type-signature"></span></h4>
 
     
 
 
+
+<div class="description">
+    Post new data to the collection.
+</div>
 
 
 
@@ -1183,30 +941,7 @@
 
         <tr>
             
-                <td class="name"><code>err</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Exception.html">Exception</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The exception object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
+                <td class="name"><code>data</code></td>
             
 
             <td class="type">
@@ -1222,7 +957,30 @@
 
             
 
-            <td class="description last">The delete results</td>
+            <td class="description last">The data to post</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="CollectionApi.html#~postCallback">CollectionApi~postCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback function</td>
         </tr>
 
     
@@ -1283,8 +1041,192 @@
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>api.collection.post({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="put"><span class="type-signature"></span>put<span class="signature">(query, data, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Update data in the collection.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
 
             
+            </td>
+
+            
+
+            
+
+            <td class="description last">The query</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="CollectionApi.html#~putCallback">CollectionApi~putCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>api.collection.put({  firstName: 'John',  lastName: 'Smith'}, {  firstName: 'John2',  lastName: 'Smith2'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+
+
+
+        
+    
+
     
 
     

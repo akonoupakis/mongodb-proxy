@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>PostOptionsProcessor - Documentation</title>
+    <title>Api - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">PostOptionsProcessor</h1>
+    <h1 class="page-title">Api</h1>
     
 
     
@@ -41,7 +41,9 @@
 <header>
     
         <h2>
-        PostOptionsProcessor
+            <span class="ancestors"><a href="module-mongodb-proxy_lib.html">mongodb-proxy/lib</a>~</span>
+        
+        Api
         </h2>
         
     
@@ -54,14 +56,14 @@
 
     
 
-    <h4 class="name" id="PostOptionsProcessor"><span class="type-signature"></span>new PostOptionsProcessor<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Api"><span class="type-signature"></span>new Api<span class="signature">(database, req, res, internal)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    The processor for post actions.
+    An api wrapper for all stores. Useful if exposed to REST services, as it gets a merged options object with all query/fiels/options parts. Foreach collection in the database, the api creates a <a href="CollectionApi.html">CollectionApi</a>.
 </div>
 
 
@@ -70,6 +72,124 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>database</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Database.html">Database</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The database instance</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The http request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The http response object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>internal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Whether the store is in internal mode or not</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -141,141 +261,6 @@
 
     
 
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="data"><span class="type-signature"></span>data<span class="signature">(data)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Set the data to post
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The data object</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>x.data({   firstName: 'John',   lastName: 'Smith'});</code></pre>
-
-
-
-        
     
 
     

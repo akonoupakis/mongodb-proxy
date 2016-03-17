@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Api - Documentation</title>
+    <title>DatabaseConfigProcessor - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Api</h1>
+    <h1 class="page-title">DatabaseConfigProcessor</h1>
     
 
     
@@ -41,7 +41,9 @@
 <header>
     
         <h2>
-        Api
+            <span class="ancestors"><a href="module-mongodb-proxy_Database.html">mongodb-proxy/Database</a>~</span>
+        
+        DatabaseConfigProcessor
         </h2>
         
     
@@ -54,14 +56,14 @@
 
     
 
-    <h4 class="name" id="Api"><span class="type-signature"></span>new Api<span class="signature">(database, req, res, internal)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="DatabaseConfigProcessor"><span class="type-signature"></span>new DatabaseConfigProcessor<span class="signature">(db)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    An api wrapper for all stores. Useful if exposed to REST services, as it gets a merged options object with all query/fiels/options parts. Foreach collection in the database, the api creates a <a href="CollectionApi.html">CollectionApi</a>.
+    The database config processor
 </div>
 
 
@@ -97,7 +99,7 @@
 
         <tr>
             
-                <td class="name"><code>database</code></td>
+                <td class="name"><code>db</code></td>
             
 
             <td class="type">
@@ -114,75 +116,6 @@
             
 
             <td class="description last">The database instance</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The http request object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The http response object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>internal</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Whether the store is in internal mode or not</td>
         </tr>
 
     
@@ -259,6 +192,432 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="bind"><span class="type-signature"></span>bind<span class="signature">(name, fn)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Bind for a global event.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The event name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The event function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-tutorial">Tutorials:</dt>
+    <dd class="tag-tutorial">
+        <ul>
+            <li><a href="tutorial-bind-global-events.html">Bind global events</a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cache"><span class="type-signature"></span>cache<span class="signature">(cache)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Set the cache.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cache</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Cache.html">Cache</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The cache instance</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-tutorial">Tutorials:</dt>
+    <dd class="tag-tutorial">
+        <ul>
+            <li><a href="tutorial-set-cache.html">Set cache provider</a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="register"><span class="type-signature"></span>register<span class="signature">(collection)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Register a collection.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>collection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="DatabaseConfigProcessor.html#~registerObject">DatabaseConfigProcessor~registerObject</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The collection configuration object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-tutorial">Tutorials:</dt>
+    <dd class="tag-tutorial">
+        <ul>
+            <li><a href="tutorial-register-collection.html">Register a collection</a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     

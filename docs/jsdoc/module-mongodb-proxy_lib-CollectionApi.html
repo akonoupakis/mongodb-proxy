@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DatabaseConfigProcessor - Documentation</title>
+    <title>CollectionApi - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">DatabaseConfigProcessor</h1>
+    <h1 class="page-title">CollectionApi</h1>
     
 
     
@@ -41,7 +41,9 @@
 <header>
     
         <h2>
-        DatabaseConfigProcessor
+            <span class="ancestors"><a href="module-mongodb-proxy_lib.html">mongodb-proxy/lib</a>~</span>
+        
+        CollectionApi
         </h2>
         
     
@@ -54,14 +56,14 @@
 
     
 
-    <h4 class="name" id="DatabaseConfigProcessor"><span class="type-signature"></span>new DatabaseConfigProcessor<span class="signature">(db)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CollectionApi"><span class="type-signature"></span>new CollectionApi<span class="signature">(database, name, req, res, internal)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    The database config processor
+    An api wrapper for a single collection using internally a <a href="Store.html">Store</a>.
 </div>
 
 
@@ -97,7 +99,7 @@
 
         <tr>
             
-                <td class="name"><code>db</code></td>
+                <td class="name"><code>database</code></td>
             
 
             <td class="type">
@@ -117,10 +119,246 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The collection name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The http request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The http response object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>internal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Whether the collection Api is in internal mode or not</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
 
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>database</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Database.html">Database</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The database instance</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The collection name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The http request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The http response object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>internal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Whether the collection Api is in internal mode or not</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -198,14 +436,14 @@
 
     
 
-    <h4 class="name" id="bind"><span class="type-signature"></span>bind<span class="signature">(name, fn)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="count"><span class="type-signature"></span>count<span class="signature">(query, cb)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Bind for a global event.
+    Counts data from the collection.
 </div>
 
 
@@ -241,691 +479,7 @@
 
         <tr>
             
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The event name</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The event function</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-tutorial">Tutorials:</dt>
-    <dd class="tag-tutorial">
-        <ul>
-            <li><a href="tutorial-bind-global-events.html">Bind global events</a></li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="cache"><span class="type-signature"></span>cache<span class="signature">(cache)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Set the cache.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>cache</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Cache.html">Cache</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The cache instance</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-tutorial">Tutorials:</dt>
-    <dd class="tag-tutorial">
-        <ul>
-            <li><a href="tutorial-set-cache.html">Set cache provider</a></li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="register"><span class="type-signature"></span>register<span class="signature">(collection)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Register a collection.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>collection</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="DatabaseConfigProcessor.html#~registerObject">DatabaseConfigProcessor~registerObject</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The collection configuration object</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-tutorial">Tutorials:</dt>
-    <dd class="tag-tutorial">
-        <ul>
-            <li><a href="tutorial-register-collection.html">Register a collection</a></li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-
-    
-        <h3 class="subsection-title">Type Definitions</h3>
-
-        
-                
-
-    
-
-    <h4 class="name" id="~registerEventsObject"><span class="type-signature"></span>registerEventsObject<span class="signature">(validate, get, post, put, del, resolve)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>validate</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The validate event</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>get</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The get event</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>post</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The post event</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>put</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The put event</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>del</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The del event</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>resolve</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The resolve event</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-                
-
-    
-
-    <h4 class="name" id="~registerObject"><span class="type-signature"></span>registerObject<span class="signature">(name, schema, events)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The collection name</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>schema</code></td>
+                <td class="name"><code>query</code></td>
             
 
             <td class="type">
@@ -941,20 +495,20 @@
 
             
 
-            <td class="description last">The validation schema</td>
+            <td class="description last">The query</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>events</code></td>
+                <td class="name"><code>cb</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="DatabaseConfigProcessor.html#~registerEventsObject">DatabaseConfigProcessor~registerEventsObject</a></span>
+<span class="param-type"><a href="CollectionApi.html#~countCallback">CollectionApi~countCallback</a></span>
 
 
             
@@ -964,7 +518,7 @@
 
             
 
-            <td class="description last">The event modules for the collection</td>
+            <td class="description last">The callback function</td>
         </tr>
 
     
@@ -1025,8 +579,654 @@
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>api.collection.count({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="del"><span class="type-signature"></span>del<span class="signature">(query, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Delete data from the collection.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
 
             
+            </td>
+
+            
+
+            
+
+            <td class="description last">The query</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Store.html#~delCallback">Store~delCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>api.collection.del({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(query, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Get data from the collection.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The query</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="CollectionApi.html#~getCallback">CollectionApi~getCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>api.collection.get({  firstName: 'John'  $single: true,  $cached: true,  $fields: {    firstName: 1,    lastName: 1  },  $limit: 100,  $sort: {    firstName: 1  }}, function (err, res) {  if(err)      throw err;  });</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="post"><span class="type-signature"></span>post<span class="signature">(data, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Post new data to the collection.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data to post</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="CollectionApi.html#~postCallback">CollectionApi~postCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>api.collection.post({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="put"><span class="type-signature"></span>put<span class="signature">(query, data, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Update data in the collection.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The query</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="CollectionApi.html#~putCallback">CollectionApi~putCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>api.collection.put({  firstName: 'John',  lastName: 'Smith'}, {  firstName: 'John2',  lastName: 'Smith2'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+
+
+
+        
+    
+
     
 
     
