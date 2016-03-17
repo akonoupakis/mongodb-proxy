@@ -11,15 +11,11 @@
 
 ## overview
 
-A proxy and api pair, for mongo databases.<br />
-A server side proxy is created given the database's schema and events configuration.<br />
-The proxy is used to handle crud database operations filtered through the given events and therefore giving the option to halt on specific database actions as a firewall.
+A Proxy and Api pair, for mongo databases.<br />
+A Store is created for a collection, used to handle crud operations filtered through custom events giving the ability to intercept, alter or halt the process.<br />
+A Api with a slightly different syntax calling internally to stores, is also available, very suitable to be exposed to REST services for client use.
 
-Have a look on the api documentation [here](https://cdn.rawgit.com/akonoupakis/mongodb-proxy/master/docs/jsdoc/index.html).
-
-## usage
-
-A few tutorials for you:
+Check the following tutorials to get started: 
 
 * [Getting started](https://cdn.rawgit.com/akonoupakis/mongodb-proxy/master/docs/jsdoc/tutorial-getting-started.html)
 * [Register a collection](https://cdn.rawgit.com/akonoupakis/mongodb-proxy/master/docs/jsdoc/tutorial-register-collection.html)

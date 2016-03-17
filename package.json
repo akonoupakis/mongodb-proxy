@@ -1,6 +1,6 @@
 {
 	"name": "mongodb-proxy",
-	"version": "1.0.31",
+	"version": "1.0.32",
 	"description": "a node proxy for mongodb",
 	"keywords": [
 		"mongo",
@@ -39,6 +39,8 @@
 	},
 	"devDependencies": {
 		"express": "^4.13.3",
-		"minami": "^1.1.1"
+		"minami": "^1.1.1",
+		"rimraf": "^2.5.2",
+		"server-root": "^1.0.10"
 	}
 }
