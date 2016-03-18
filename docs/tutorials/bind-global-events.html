@@ -2,18 +2,18 @@
 
 <pre class="prettyprint">
     
-    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');
-    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>({...});        
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy')
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>({...})
     db.<a href="Database.html#configure">configure</a>(function (<a href="DatabaseConfigProcessor.html">config</a>) {
-        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("preread", require("./events/preread.js"));
-        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("postread", require("./events/postread.js"));
-        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("precreate", require("./events/precreate.js"));
-        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("postcreate", require("./events/postcreate.js"));
-        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("preupdate", require("./events/preupdate.js"));
-        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("postupdate", require("./events/postupdate.js"));
-        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("predelete", require("./events/predelete.js"));
-        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("postdelete", require("./events/postdelete.js"));        
-    });
+        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("preread", require("./events/preread.js"))
+        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("postread", require("./events/postread.js"))
+        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("precreate", require("./events/precreate.js"))
+        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("postcreate", require("./events/postcreate.js"))
+        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("preupdate", require("./events/preupdate.js"))
+        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("postupdate", require("./events/postupdate.js"))
+        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("predelete", require("./events/predelete.js"))
+        config.<a href="DatabaseConfigProcessor.html#bind">bind</a>("postdelete", require("./events/postdelete.js"))        
+    })
     
 </pre>
 
@@ -27,11 +27,11 @@
             // check that the user has permissions on the current store and the current item 
             if(!isUserAuthorised(currentUser, collection, "get"))
                 // return Unauthorized 
-                return context.error(401, "Access denied");
+                return context.error(401, "Access denied")
         
         // trigger the async callback
-        context.done();        
-    };
+        context.done()
+    }
     
 </pre>
 
@@ -45,11 +45,11 @@
             // in case the data is restricted 
             if(isRestricted(collection, data))
                 // return Unauthorized 
-                return context.error(401, "Access denied");
+                return context.error(401, "Access denied")
         
         // trigger the async callback
-        context.done();        
-    };
+        context.done()        
+    }
     
 </pre>
 
@@ -63,11 +63,11 @@
             // check that the user has permissions on the current store and the current item 
             if(!isUserAuthorised(currentUser, collection, "post"))
                 // return Unauthorized 
-                return context.error(401, "Access denied");
+                return context.error(401, "Access denied")
         
         // trigger the async callback
-        context.done();        
-    };
+        context.done()
+    }
     
 </pre>
 
@@ -79,12 +79,12 @@
         // record the post action
         logAction(sender, collection, "post", data, function (err, res) {
             if (err) 
-                return context.error(err);
+                return context.error(err)
             
             // trigger the async callback
-            context.done();
-        });        
-    };
+            context.done()
+        })       
+    }
     
 </pre>
 
@@ -98,11 +98,11 @@
             // check that the user has permissions on the current store and the current item 
             if(!isUserAuthorised(currentUser, collection, "put"))
                 // return Unauthorized 
-                return context.error(401, "Access denied");
+                return context.error(401, "Access denied")
         
         // trigger the async callback
-        context.done();        
-    };
+        context.done()
+    }
     
 </pre>
 
@@ -114,12 +114,12 @@
         // record the post action
         logAction(sender, collection, "put", data, function (err, res) {
             if (err) 
-                return context.error(err);
+                return context.error(err)
             
             // trigger the async callback
-            context.done();
-        });        
-    };
+            context.done()
+        })        
+    }
     
 </pre>
 
@@ -133,11 +133,11 @@
             // check that the user has permissions on the current store and the current item 
             if(!isUserAuthorised(currentUser, collection, "del"))
                 // return Unauthorized 
-                return context.error(401, "Access denied");
+                return context.error(401, "Access denied")
         
         // trigger the async callback
-        context.done();        
-    };
+        context.done()        
+    }
     
 </pre>
 
@@ -149,11 +149,11 @@
         // record the post action
         logAction(sender, collection, "del", data, function (err, res) {
             if (err) 
-                return context.error(err);
+                return context.error(err)
             
             // trigger the async callback
-            context.done();
-        });        
-    };
+            context.done()
+        })        
+    }
     
 </pre>

@@ -47,29 +47,29 @@ There would be cases that you wished to be able to use directly the mongodb driv
 
 <pre class="prettyprint">
         
-    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');
-    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>({...});
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy')
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>({...})
     
-    var <a href="Store.html">store</a> = db.<a href="Database.html#createStore">createStore</a>('users');
+    var <a href="Store.html">store</a> = db.<a href="Database.html#createStore">createStore</a>('users')
      
     store.<a href="Store.html#getCollection">getCollection</a>(function(collectionErr, collection) {
         if(collectionErr)
-            throw collectionErr;
+            throw collectionErr
              
         collection.find({}, function (cursorErr, cursor) {
             if (cursorErr)
-                throw cursorErr;
+                throw cursorErr
     
             function processItem(err, myDoc) {
                 if (err)
-                    throw err);
+                    throw err)
     
-                cursor.nextObject(processItem);
-            };
+                cursor.nextObject(processItem)
+            }
             
-            cursor.nextObject(processItem);
-        });
-    });
+            cursor.nextObject(processItem)
+        })
+    })
         
 </pre>
 </article>
