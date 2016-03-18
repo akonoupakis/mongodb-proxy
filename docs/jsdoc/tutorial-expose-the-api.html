@@ -58,11 +58,11 @@ This api can be exposed to REST services in a few steps.
 
 <pre class="prettyprint">
         
-    var express = require('express');
-    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');        
+    var express = require('express')
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy')        
          
-    var app = express();
-    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>({...});
+    var app = express()
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>({...})
         
     // listen for all requests under an '/api' location 
     app.all('/api/:collection*', function (req, res, next) {    
@@ -75,41 +75,38 @@ This api can be exposed to REST services in a few steps.
             data: req.body,
             req: req,
             res: res
-        };
+        }
         
         // get the post data 
-        var postdata = "";        
+        var postdata = ""        
         req.on('data', function (postdataChunk) {
-            postdata += postdataChunk;
-        });  
+            postdata += postdataChunk
+        })  
         
         req.on('end', function () {
-            var jsonData = JSON.parse(postdata || '{}');
-            route.data = jsonData;
+            var jsonData = JSON.parse(postdata || '{}')
+            route.data = jsonData
             
             // pass the work on the proxy 
             db.<a href="Database.html#handle">handle</a>(route, next, function (error, results) {
                 if (error) {
                     if (typeof (error) === 'object') {
                         if (error.code && error.messages) {
-                            res.status(error.code).send(error.messages);
+                            res.status(error.code).send(error.messages)
+                        } else {
+                            res.status(500).send(error.message)
                         }
-                        else {
-                            res.status(500).send(error.message);
-                        }
+                    } else {
+                        res.status(500).send(error)
                     }
-                    else {
-                        res.status(500).send(error);
-                    }
+                } else {
+                    res.send(results)
                 }
-                else {
-                    res.send(results);
-                }
-            });
-        });
-    });
+            })
+        })
+    })
     
-    app.listen(3000);
+    app.listen(3000)
         
 </pre>
 

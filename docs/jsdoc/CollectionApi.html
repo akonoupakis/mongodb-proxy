@@ -579,7 +579,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>api.collection.count({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+    <pre class="prettyprint"><code>api.collection.count({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)     throw err})</code></pre>
 
 
 
@@ -733,7 +733,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>api.collection.del({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+    <pre class="prettyprint"><code>api.collection.del({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)     throw err})</code></pre>
 
 
 
@@ -887,7 +887,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>api.collection.get({  firstName: 'John'  $single: true,  $cached: true,  $fields: {    firstName: 1,    lastName: 1  },  $limit: 100,  $sort: {    firstName: 1  }}, function (err, res) {  if(err)      throw err;  });</code></pre>
+    <pre class="prettyprint"><code>api.collection.get({  firstName: 'John'  $single: true,  $cached: true,  $fields: {    firstName: 1,    lastName: 1  },  $limit: 100,  $sort: {    firstName: 1  }}, function (err, res) {  if(err)     throw err})</code></pre>
 
 
 
@@ -1041,7 +1041,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>api.collection.post({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+    <pre class="prettyprint"><code>api.collection.post({  firstName: 'John',  lastName: 'Smith'}, function (err, res) {  if(err)     throw err})</code></pre>
 
 
 
@@ -1218,7 +1218,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>api.collection.put({  firstName: 'John',  lastName: 'Smith'}, {  firstName: 'John2',  lastName: 'Smith2'}, function (err, res) {  if(err)      throw err;  });</code></pre>
+    <pre class="prettyprint"><code>api.collection.put({  firstName: 'John',  lastName: 'Smith'}, {  firstName: 'John2',  lastName: 'Smith2'}, function (err, res) {  if(err)     throw err})</code></pre>
 
 
 
