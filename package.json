@@ -23,7 +23,7 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "test": "standard lib/*.js & mocha"
+    "test": "standard lib/**/*.js & mocha"
   },
   "license": "MIT",
   "files": [

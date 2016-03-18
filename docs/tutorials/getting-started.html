@@ -6,19 +6,19 @@
         port: 27017,
         host: "localhost",
         name: "db"
-    };
+    }
     
-    var collectionName = "users";
+    var collectionName = "users"
        
-    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');
-    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>(dbConfig);
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy')
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>(dbConfig)
     
     db.<a href="Database.html#configure">configure</a>(function (<a href="DatabaseConfigProcessor.html">config</a>) {
         // register a collection "users". (check out the tutorial <i><a href="tutorial-register-collection.html">Register a collection</a></i> for more)        
         config.<a href="DatabaseConfigProcessor.html#register">register</a>({
             name: collectionName
-        });        
-    });
+        })        
+    })
         
 </pre>
 
@@ -26,24 +26,24 @@
 
 <pre class="prettyprint">
     
-    var store = db.<a href="Database.html#createStore">createStore</a>('users');
+    var store = db.<a href="Database.html#createStore">createStore</a>('users')
  
     store.<a href="Store.html#get">get</a>(function (x) {
         x.query({
             id: 'xx'
-        });
-        x.fields(['firstName']);
+        })
+        x.fields(['firstName'])
         x.options({
             limit: 2
-        });        
-        x.single(true);  
-        x.cached();  
+        })        
+        x.single(true)  
+        x.cached()  
     }, function (err, res) {
         if(err)
-            throw err;
+            throw err
             
-        console.log(res);
-    });
+        console.log(res)
+    })
         
 </pre>
 
@@ -51,7 +51,7 @@
 
 <pre class="prettyprint">
     
-    var api = db.<a href="Database.html#createApi">createApi</a>();
+    var api = db.<a href="Database.html#createApi">createApi</a>()
     
     api.<a href="CollectionApi.html">users</a>.<a href="CollectionApi.html#get">get</a>({
         id: 'xx',
@@ -63,9 +63,9 @@
         $cached: true
     }, function (err, res) {
         if(err)
-            throw err;
+            throw err
             
-        console.log(res);
-    });
+        console.log(res)
+    })
         
 </pre>

@@ -7,9 +7,9 @@ Assuming we have a collection of users, we should have the following:</p>
         port: 27017,
         host: "localhost",
         name: "db"
-    };
+    }
     
-    var collectionName = "users";
+    var collectionName = "users"
     
     var collectionSchema = {
         type: "object",
@@ -28,14 +28,14 @@ Assuming we have a collection of users, we should have the following:</p>
                 required: true
             }
         }        
-    };
+    }
     
 </pre>
 
 <pre class="prettyprint">
     
-    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy');
-    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>(dbConfig);        
+    var <a href="module-mongodb-proxy.html">dbproxy</a> = require('mongodb-proxy')
+    var <a href="Database.html">db</a> = dbproxy.<a href="module-mongodb-proxy.html#create">create</a>(dbConfig)        
     db.<a href="Database.html#configure">configure</a>(function (<a href="DatabaseConfigProcessor.html">config</a>) {    
         config.<a href="DatabaseConfigProcessor.html#register">register</a>({
             name: collectionName,
@@ -47,8 +47,8 @@ Assuming we have a collection of users, we should have the following:</p>
                 validate: require('./events/validate.js'),
                 delete: require('./events/delete.js')
             }
-        });        
-    });
+        })        
+    })
     
 </pre>
 
@@ -62,14 +62,14 @@ Assuming we have a collection of users, we should have the following:</p>
             // check that the user has permissions on the current store and the current item 
             if(!isUserAuthorised(currentUser, context.store.name, data.id, 'get'))
                 // return Unauthorized 
-                return context.error(401, 'Access denied');
+                return context.error(401, 'Access denied')
         
         // hide the password property from the resulted object
-        context.hide('password');
+        context.hide('password')
         
         // trigger the async callback
-        context.done();
-    };
+        context.done()
+    }
     
 </pre>
 
@@ -83,14 +83,14 @@ Assuming we have a collection of users, we should have the following:</p>
             // check that the user has permissions on the current store and the current item's parent 
             if(!isUserAuthorised(currentUser, context.store.name, data.parentId, 'post'))
                 // return Unauthorized 
-                return context.error(401, 'Access denied');
+                return context.error(401, 'Access denied')
         
         // set defaults
-        data.createdOn = new Date().getTime();
+        data.createdOn = new Date().getTime()
         
         // trigger the async callback
-        context.done();
-    };
+        context.done()
+    }
     
 </pre>
 
@@ -104,18 +104,18 @@ Assuming we have a collection of users, we should have the following:</p>
             // check that the user has permissions on the current store and the current item's parent 
             if(!isUserAuthorised(currentUser, context.store.name, data.id, 'put'))
                 // return Unauthorized 
-                return context.error(401, 'Access denied');
+                return context.error(401, 'Access denied')
         
         // prevent from changing a field
         if(context.changed('password'))
-            return context.error(400, 'Cannot change field');
+            return context.error(400, 'Cannot change field')
         
         // set defaults
-        data.modifiedOn = new Date().getTime();
+        data.modifiedOn = new Date().getTime()
         
         // trigger the async callback
-        context.done();
-    };
+        context.done()
+    }
     
 </pre>
 
@@ -129,11 +129,11 @@ Assuming we have a collection of users, we should have the following:</p>
     module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
         // check password length        
         if(data.password.length < 5)
-            return context.error(400, 'Password should be at least 5 characters');
+            return context.error(400, 'Password should be at least 5 characters')
         
         // trigger the async callback
-        context.done();
-    };
+        context.done()
+    }
     
 </pre>
 
@@ -142,7 +142,7 @@ Assuming we have a collection of users, we should have the following:</p>
 <pre class="prettyprint">
     
     module.exports = function (<a href="Database.html">sender</a>, <a href="Context.html">context</a>, data) {
-        return context.error(401, 'Access denied');        
-    };
+        return context.error(401, 'Access denied')        
+    }
     
 </pre>
