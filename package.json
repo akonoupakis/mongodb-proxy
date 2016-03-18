@@ -23,12 +23,18 @@
 	},
 	"main": "lib/index.js",
 	"scripts": {
-		"test": "standard ./lib/**/*.js & mocha"
+		"test": "standard & mocha"
 	},
 	"license": "MIT",
 	"files": [
 		"lib/**"
 	],
+    "standard": {
+      "ignore": [
+        "/docs/",
+        "/dev/"
+      ]
+    },
 	"dependencies": {
 		"async": "^1.5.0",
 		"debug": "^2.2.0",
