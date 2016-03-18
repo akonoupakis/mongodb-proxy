@@ -8,7 +8,7 @@
 
 [![BUILD](https://api.travis-ci.org/akonoupakis/mongodb-proxy.svg?branch=master)](http://travis-ci.org/akonoupakis/mongodb-proxy)
 [![STANDARD](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-![DEPENDENCIES](https://david-dm.org/akonoupakis/mongodb-proxy.svg)
+[![DEPENDENCIES](https://david-dm.org/akonoupakis/mongodb-proxy.svg)](https://david-dm.org/akonoupakis/mongodb-proxy)
 
 [![NPM](https://nodei.co/npm/mongodb-proxy.png?downloads=true)](https://nodei.co/npm/mongodb-proxy/)
 
