@@ -1,6 +1,6 @@
 language: node_js
 node_js:
 - '0.10'
-before_install:
-- node_modules/.bin/dependency-check ./package.json
-- node_modules/.bin/dependency-check ./package.json -i express -i minami -i mocha -i standard -i dependency-check --unused
+before_script:
+- dependency-check ./package.json
+- dependency-check ./package.json -i express -i minami -i mocha -i standard -i dependency-check --unused
