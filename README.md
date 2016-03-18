@@ -11,9 +11,8 @@
 
 ## overview
 
-A Proxy and Api pair, for mongo databases.<br />
-A Store is created for a collection, used to handle crud operations filtered through custom events giving the ability to intercept, alter or halt the process.<br />
-A Api with a slightly different syntax calling internally to stores, is also available, very suitable to be exposed to REST services for client use.
+A Store for each collection, used to handle crud operations filtered through custom events giving the ability to intercept, alter or halt the process.<br />
+An Api with a slightly different syntax calling internally to stores, is also available, very suitable to be exposed to REST services for client use.
 
 Check the following tutorials to get started: 
 
