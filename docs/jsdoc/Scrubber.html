@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>GetOptionsProcessor - Documentation</title>
+    <title>Scrubber - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">GetOptionsProcessor</h1>
+    <h1 class="page-title">Scrubber</h1>
     
 
     
@@ -41,7 +41,7 @@
 <header>
     
         <h2>
-        GetOptionsProcessor
+        Scrubber
         </h2>
         
     
@@ -54,14 +54,14 @@
 
     
 
-    <h4 class="name" id="GetOptionsProcessor"><span class="type-signature"></span>new GetOptionsProcessor<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Scrubber"><span class="type-signature"></span>new Scrubber<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    The processor for get actions.
+    An object scrubber for the proxy's internal use.The scrubber is used to convert incoming object to mongodb friendly objects and vice versa.
 </div>
 
 
@@ -149,96 +149,14 @@
 
     
 
-    <h4 class="name" id="cached"><span class="type-signature"></span>cached<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="inbound"><span class="type-signature"></span>inbound<span class="signature">(object)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
 
 
 
 <div class="description">
-    Set to cache the result
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>x.cached()</code></pre>
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="fields"><span class="type-signature"></span>fields<span class="signature">(fields)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Set the fields
+    Converts to an incoming object
 </div>
 
 
@@ -274,143 +192,7 @@
 
         <tr>
             
-                <td class="name"><code>fields</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-|
-
-<span class="param-type">array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The restricted fields</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Examples</h5>
-    
-    <pre class="prettyprint"><code>x.fields(['firstName', 'lastName'])</code></pre>
-
-    <pre class="prettyprint"><code>x.fields({   firstName: 1,   lastName: 1})</code></pre>
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="options"><span class="type-signature"></span>options<span class="signature">(options)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Set the options
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
+                <td class="name"><code>object</code></td>
             
 
             <td class="type">
@@ -426,7 +208,7 @@
 
             
 
-            <td class="description last">The options</td>
+            <td class="description last">The target object</td>
         </tr>
 
     
@@ -485,11 +267,24 @@
 
 
 
+<h5>Returns:</h5>
+
+        
 
 
-    <h5>Example</h5>
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
     
-    <pre class="prettyprint"><code>x.options({   start: 0,   limit: 50,   sort: { firstName: 1 }}})</code></pre>
 
 
 
@@ -498,14 +293,14 @@
 
     
 
-    <h4 class="name" id="query"><span class="type-signature"></span>query<span class="signature">(query)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="outbound"><span class="type-signature"></span>outbound<span class="signature">(object)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
 
 
 
 <div class="description">
-    Set the query
+    Converts to an outgoing object
 </div>
 
 
@@ -541,16 +336,13 @@
 
         <tr>
             
-                <td class="name"><code>query</code></td>
+                <td class="name"><code>object</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">object</span>
-|
-
-<span class="param-type">string</span>
 
 
             
@@ -560,7 +352,7 @@
 
             
 
-            <td class="description last">The query object or the mongodb ObjectId</td>
+            <td class="description last">The target object</td>
         </tr>
 
     
@@ -619,164 +411,24 @@
 
 
 
-
-
-    <h5>Examples</h5>
-    
-    <pre class="prettyprint"><code>x.query('XXX')</code></pre>
-
-    <pre class="prettyprint"><code>x.query({   firstName: 'John',   lastName: 'Smith'})</code></pre>
-
-
+<h5>Returns:</h5>
 
         
-            
-
-    
-
-    <h4 class="name" id="single"><span class="type-signature"></span>single<span class="signature">(value<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
-
-    
 
 
-
-<div class="description">
-    Set to fetch a single result
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
+<span class="param-type">object</span>
 
 
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    true
-                
-                </td>
-            
-
-            <td class="description last">Whether it should fetch a single result or not</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
     
-    <pre class="prettyprint"><code>x.single()</code></pre>
 
 
 

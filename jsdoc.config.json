@@ -10,8 +10,10 @@
             "lib/Context.js",
             "lib/Database.js",
             "lib/Exception.js",
+            "lib/Scrubber.js",
             "lib/Store.js",
-            "lib/index.js"
+            "lib/index.js",
+            "test/Scrubber.js"
         ]
     },
     "opts": {

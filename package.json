@@ -1,6 +1,6 @@
 {
 	"name": "mongodb-proxy",
-	"version": "1.0.43",
+	"version": "1.0.44",
 	"description": "a node proxy for mongodb",
 	"keywords": [
 		"mongo",
@@ -23,12 +23,18 @@
 	},
 	"main": "lib/index.js",
 	"scripts": {
-		"test": "standard ./lib/**/*.js & mocha"
+		"test": "standard & mocha"
 	},
 	"license": "MIT",
 	"files": [
 		"lib/**"
 	],
+	"standard": {
+		"ignore": [
+			"/dev/",
+			"/docs/"
+		]
+	},
 	"dependencies": {
 		"async": "^1.5.0",
 		"debug": "^2.2.0",
