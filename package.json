@@ -1,6 +1,6 @@
 {
 	"name": "mongodb-proxy",
-	"version": "1.0.42",
+	"version": "1.0.43",
 	"description": "a node proxy for mongodb",
 	"keywords": [
 		"mongo",
@@ -43,6 +43,7 @@
 	"devDependencies": {
 		"dependency-check": "^2.5.1",
 		"express": "^4.13.3",
+		"jsdoc": "^3.4.0",
 		"minami": "^1.1.1",
 		"mocha": "^2.4.5",
 		"standard": "^6.0.8"
