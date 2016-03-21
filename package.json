@@ -31,7 +31,6 @@
 	],
 	"standard": {
 		"ignore": [
-			"/dev/",
 			"/docs/"
 		]
 	},
